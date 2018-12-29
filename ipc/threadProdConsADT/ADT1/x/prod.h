@@ -1,0 +1,22 @@
+#ifndef __PROD_H__
+#define __PROD_H__
+
+#include "prodCons.h"
+
+typedef struct Produce_t Produce_t;
+
+Produce_t* ProduceInit(Queue* _queue, pthread_mutex_t* _mutex, pthread_cond_t* _cond, size_t _maxQueueSize);
+
+void ProduceDestroy(Produce_t* _produce);
+
+void* Produce(Produce_t* _produce, void* _item);
+
+Queue* ProdGetQueue(Produce_t* _produce);
+
+pthread_mutex_t* ProdGetMutex(Produce_t* _produce);
+
+int ProdExit(Produce_t* _produce);
+
+int ProdGetNum(Produce_t* _produce);
+
+#endif /* #ifndef __PROD_H__ */

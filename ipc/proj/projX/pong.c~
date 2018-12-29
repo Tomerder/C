@@ -1,0 +1,101 @@
+#ifndef _XOPEN_SOURCE 
+#define _XOPEN_SOURCE 500
+#endif
+/*------------------------------------------------------------------------------------*/
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <time.h>
+
+/*------------------------------------------------------------------------------------*/
+
+#include "MsgQueue.h"
+#include "pingPong.h"
+
+/*------------------------------------------------------------------------------------*/
+
+#define PRINT_ERR if(err!=0){ printf("FAIL: error no. %d  , ",err); }else{printf("PASS ,");}
+
+#define DEBUG TRUE
+
+/*------------------------------------------------------------------------------------*/
+
+typedef struct Args{
+	int m_workTime;
+	int m_isDebug;
+}Args;
+
+/*------------------------------------------------------------------------------------*/
+
+void GetArgs(int argc ,char** argv);
+
+/*------------------------------------------------------------------------------------*/
+
+Args args = {DEFAULT_WORK_TIME , DEBUG} ;
+
+/*------------------------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{
+	int numOfbytesRead;
+	char msgToGet[50];
+	MsgQ* msgQ = NULL;
+
+	GetArgs(argc ,argv);
+
+	msgQ = MsgQueueConnect(FILE_NAME);
+	if(msgQ == NULL){
+		printf("msgQ == NULL\n");
+		return 0; 
+	}
+
+	while(TRUE){
+		numOfbytesRead = MsgQueueRcv (msgQ, msgToGet, 50);
+		msgToGet[numOfbytesRead] = '\0';
+		printf("msg rcv : %s\n", msgToGet);
+
+		usleep(args.m_workTime);
+
+		if (strcmp(msgToGet , EOF_SIGN) == 0){
+			MsgQueueSnd (msgQ, EOF_SIGN, strlen(EOF_SIGN) );
+			break;
+		}
+	}
+
+	MsgQueueDestroy(msgQ);
+
+    return 0; 	
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+void GetArgs(int _argc ,char** _argv)
+{
+	int argType;
+
+	/*set args from agrv*/	
+	while ((argType = getopt(_argc, _argv, "s:d")) != -1)
+	{
+		switch(argType)
+		{
+			case 's':
+				args.m_workTime = atoi(optarg) * MICROSEC_MUL_RES;
+				break;
+			case 'd':
+				args.m_isDebug = TRUE;
+				break;	
+			default:				
+				break;
+		}
+	}	
+}
+
+/*------------------------------------------------------------------------------------*/
+
+
+	

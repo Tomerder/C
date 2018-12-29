@@ -1,0 +1,15 @@
+#create objects to create
+gcc -c count.c 
+gcc -c add.c
+
+#create archive
+ar -rv archive.a count.o add.o 
+
+#remove unnecessery objects
+rm count.o
+rm add.o
+
+#compile main with archive
+gcc main.c archive.a -o archiveExe
+ 
+

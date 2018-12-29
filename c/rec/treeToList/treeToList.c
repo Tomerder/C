@@ -1,0 +1,303 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_OF_ITEMS 10
+
+
+typedef struct TreeNode TreeNode;
+typedef struct ListNode ListNode;
+
+
+struct TreeNode{
+	int m_key;
+	TreeNode* m_left;
+	TreeNode* m_right;
+};
+
+struct ListNode{
+	int m_key;
+	TreeNode* m_prev;
+	TreeNode* m_next;
+};
+
+/*--------------------------------------------------------------------*/
+
+ListNode* TreeToList(TreeNode* _root);
+
+void SetPrev(TreeNode* _node);
+ListNode* LeftNext(TreeNode* _node);
+
+void SetNext(TreeNode* _node);
+ListNode* RightPrev(TreeNode* _node);
+
+TreeNode* SetTree(int* _arrOfInts);
+void PrintList(ListNode* _listNode);
+void PrintTree(TreeNode* _treeNode);
+
+/*--------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{
+	int arrOfInts[NUM_OF_ITEMS] = {5,2,1,3,10,7,6,20,15,25}; 
+	TreeNode* root;
+	ListNode* listNode;
+	
+	root = SetTree(arrOfInts);
+	
+	printf("Tree:\n");
+	PrintTree(root);
+
+	listNode = TreeToList(root);
+	
+	PrintList(listNode);
+
+}
+
+/*--------------------------------------------------------------------*/
+
+ListNode* TreeToList(TreeNode* _root){
+	TreeNode* savLeft;
+	TreeNode* savRight;
+	
+	if(_root == NULL){
+		return;
+	}
+
+	/*save for recursion*/
+	savLeft = _root->m_left;
+	savRight = _root->m_right;
+
+	/*set prev and next to cur node*/
+	SetPrev(_root); 
+	SetNext(_root);		
+	
+	/*left rec*/
+	if(savLeft != NULL){
+		TreeToList(savLeft);	
+	}
+
+	/*right rec - protect from dealing with nodes that were already dealt with(infinit loop)*/ 
+	if(savRight != NULL && savRight->m_left != _root ){  
+		TreeToList(savRight);
+	}
+	
+			
+	return 	_root;
+
+}
+
+/*--------------------------------------------------------------------*/
+
+
+void SetPrev(TreeNode* _node){
+	ListNode* leftList;
+	ListNode* listNode;
+	ListNode* prevNode;
+	
+	/*protect from dealing with nodes that were already dealt with(infinit loop)*/ 
+	if(_node->m_left == NULL || _node->m_left->m_right == _node){
+		return;
+	}
+
+	listNode = (ListNode*)(_node);	
+	leftList = (ListNode*)(_node->m_left);
+	
+	prevNode = LeftNext(leftList);
+	
+	listNode->m_prev = prevNode;
+
+	if(prevNode != NULL){
+		prevNode->m_next = listNode; 
+	}
+
+}
+
+
+/*--------------------------------------------------------------------*/
+
+
+void SetNext(TreeNode* _node){
+	ListNode* rightList;
+	ListNode* listNode;
+	ListNode* nextNode;
+	
+	/*protect from dealing with nodes that were already dealt with(infinit loop)*/ 
+	if(_node->m_right == NULL || _node->m_right->m_left == _node){
+		return;
+	}
+
+	listNode = (ListNode*)(_node);	
+	rightList = (ListNode*)(_node->m_right);
+	
+	nextNode = RightPrev(rightList);
+	
+	listNode->m_next = nextNode;
+
+	if(nextNode != NULL){
+		nextNode->m_prev = listNode; 
+	}
+
+}
+
+/*--------------------------------------------------------------------*/
+
+
+ListNode* LeftNext(TreeNode* _node){
+	TreeNode* treeNext;
+	ListNode* listNext;
+	ListNode* listNode;
+	
+	
+	if(_node->m_right == NULL){    /*rec stop condition*/
+		return _node;
+	}
+	
+	treeNext = _node->m_right;
+	
+	while(treeNext->m_right != NULL){
+		treeNext = treeNext->m_right;
+	} 
+	
+	listNext = (ListNode*)treeNext;
+	
+	listNode = (ListNode*)(_node);	
+	
+	return listNext;
+	
+}
+
+
+/*--------------------------------------------------------------------*/
+
+
+ListNode* RightPrev(TreeNode* _node){
+	TreeNode* treeNext;
+	ListNode* listNext;
+	ListNode* listNode;
+	
+	
+	if(_node->m_left == NULL){    /*rec stop condition*/
+		return _node;
+	}
+	
+	treeNext = _node->m_left;
+	
+	while(treeNext->m_left != NULL){
+		treeNext = treeNext->m_left;
+	} 
+	
+	listNext = (ListNode*)treeNext;
+	
+	listNode = (ListNode*)(_node);	
+	
+	return listNext;
+	
+
+	
+}
+
+/*--------------------------------------------------------------------*/
+
+
+TreeNode* SetTree(int* _arrOfInts){
+	int i;
+	TreeNode* root;
+	TreeNode* treeNode;
+	TreeNode* newTreeNode;
+	
+	root = (TreeNode*) malloc (sizeof(TreeNode));	
+	root->m_key = _arrOfInts[0];
+	root->m_left = NULL;
+	root->m_right = NULL;
+		
+	for(i=1; i<NUM_OF_ITEMS; i++){
+		newTreeNode = (TreeNode*) malloc (sizeof(TreeNode));
+		newTreeNode->m_key = _arrOfInts[i];	
+		newTreeNode->m_left = NULL;
+		newTreeNode->m_right = NULL;
+		
+		treeNode = root;		
+		while(treeNode != NULL){
+			if(newTreeNode->m_key > treeNode->m_key){   /*new is bigger*/
+				if(	treeNode->m_right != NULL){			 
+					treeNode = treeNode->m_right;
+				}else{
+					treeNode->m_right = newTreeNode;	
+					break;		
+				}
+			}else{                                     /*new is smaller*/
+				if(	treeNode->m_left != NULL){			 
+					treeNode = treeNode->m_left;
+				}else{
+					treeNode->m_left = newTreeNode;		
+					break;	
+				}
+			}	
+		}
+	}
+
+	return root;
+}
+
+/*--------------------------------------------------------------------*/
+
+void PrintList(ListNode* _listNode){
+	ListNode* curNode;
+	
+	printf("sorted list:\n");
+
+	curNode = _listNode;
+	while(curNode->m_prev != NULL){
+		curNode = curNode->m_prev;
+	}
+
+	while(curNode != NULL){
+		printf("%d ", curNode->m_key);
+		curNode = curNode->m_next;
+	}	
+	printf("\n");
+
+}
+
+/*--------------------------------------------------------------------*/
+
+void PrintTree(TreeNode* _treeNode){
+
+	if(_treeNode == NULL){
+		return;
+	}
+
+	if(_treeNode->m_left != NULL){
+		printf("%d l->" , _treeNode->m_key);
+		PrintTree(_treeNode->m_left);
+	}
+
+	if(_treeNode->m_right != NULL){
+		printf("%d r->" , _treeNode->m_key);
+		PrintTree(_treeNode->m_right);
+	}
+
+	if(_treeNode->m_left == NULL  && _treeNode->m_right == NULL ){
+		printf("%d " , _treeNode->m_key);
+	}
+	
+	printf("\n");
+
+}
+
+
+
+
+/*--------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+

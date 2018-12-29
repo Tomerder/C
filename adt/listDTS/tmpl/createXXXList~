@@ -1,0 +1,7 @@
+#TYPE=Cat
+
+cp tmplList.h CatList.h
+sed -i 's/XXX/Cat/g' CatList.h
+
+cp tmplList.c CatList.c
+sed -i 's/XXX/Cat/g' CatList.c

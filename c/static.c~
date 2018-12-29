@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include <math.h>
+
+
+int globalInt;
+static int globalStaticInt;
+
+int main(int argc,char** argv)
+{	
+	static int localStaticInt = 0;
+	int localInt;
+	
+	char arr[10];
+
+	printf("g:%d  gs:%d l:%d sl:%d \n" , globalInt , globalStaticInt , localInt , localStaticInt); 
+
+	return 0;
+
+}
+
+
+
+void incFunc(int localStaticInt){
+	globalInt++;
+	globalStaticInt++;
+	localStaticInt++;
+
+}

@@ -1,0 +1,16 @@
+rm SLAB
+rmmod slab.ko
+insmod slab.ko
+
+#cat /proc/devices     # =>  major
+#mknod SLAB c <major> 0
+#echo msg1 > SLAB 
+#echo msg2 > SLAB   
+#echo msg3 > SLAB
+#cat SLAB 
+#cat SLAB 
+#cat SLAB 
+#cat SLAB 
+
+
+

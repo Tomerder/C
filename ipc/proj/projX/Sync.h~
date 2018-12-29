@@ -1,0 +1,41 @@
+/*****************************************************************************************************************
+*    AUTHOR: Tomer Dery                                                                                 
+*    DATE: 18.02.14                                                                                              
+*    LAST MODIFIED: 18.02.14                                                                                  
+*    DESCRIPTION: Sync Objs
+*****************************************************************************************************************/
+#ifndef __SYNC_H__
+#define __SYNC_H__
+
+/*------------------------------------------------------------*/
+
+typedef struct SyncObjs SyncObjs;		
+typedef struct SyncObj SyncObj;
+
+enum{ SEM_EMPTY , SEM_FULL , SEM_LOCK , NUM_OF_SEMS }
+
+/*.c*/
+struct SyncObjs{
+	int m_numOfSyncObjs
+	SyncObj* m_syncObjs;
+};
+
+/*.c*/
+struct SyncObj{
+	sem_t m_syncObj;
+};		
+
+/*------------------------------------------------------------*/
+
+/*inits arr of _numOfObjs SyncObjs starting from mem*/
+SyncObjs* SyncInit(char* _mem, int _numOfObjs);
+
+int SyncObjsNeededSize(int _numOfObjs);
+
+void SyncDestroy(SyncObjs* _syncObjs);
+
+SyncObj* GetSyncObj(SyncObjs* _syncObjs , int _numOfObj);
+
+/*------------------------------------------------------------*/
+
+#endif /* __SYNC_H__ */

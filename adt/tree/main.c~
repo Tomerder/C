@@ -1,0 +1,536 @@
+/**************************************************************************************
+    Author : Tomer Dery
+    Creation date :      08.01.14
+    Date last modified : 09.01.14
+    Description : search tree - binaric tree - left is smaller then parent , right is bigger or equal.  
+    			  mainly used for search => if balanced : log(n)	
+***************************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <string.h>
+#include <time.h>
+
+#include "tree.h"
+
+/*------------------------------------------------------------------------------------*/
+
+#define NUM_OF_ITEMS 11
+#define MAX_VAL 10000
+
+#define RETURN_ERR if(err!=0) printf("FAIL:%d ",err)
+
+typedef enum {FAIL,PASS} Result;
+char* resultArr[2] = {"FAIL","PASS"};
+#define SUCCESS 1
+
+#define DEBUG 0
+
+/*------------------------------------------------------------------------------------*/
+
+int IntCompFunc(Data _data1, Data _data2);
+
+int DoFuncSum(Data _data, Parm _parm);
+int DoFuncPrt(Data _data, Parm _parm);
+void sortArr(int* arrToSort);
+
+void test1(int* arrToInsert);
+
+Tree* initTree(int* arrToInsert);
+
+void testCreateInsertDestroy(int* arrToInsert);
+void testFind(int* arrToInsert);
+void testCount(int* arrToInsert);
+void testBeginEndGetData(int* arrToInsert);
+void testForEach(int* arrToInsert);
+void testNextPrev(int* arrToInsert);
+void testRemove(int* arrToInsert);
+
+void testIterInOrderA(int* arrToInsert);
+void testIterInOrderB(int* arrToInsert);
+
+/*------------------------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{	
+	int arrToInsert[NUM_OF_ITEMS] = {10,5,20,2,13,11,25,15,22,7,30,35};
+	/*int i;
+		
+	srand (time(NULL));	
+	for(i=0; i<NUM_OF_ITEMS; i++){
+	  	arrToInsert[i] = rand() % MAX_VAL + 1;
+	}*/
+	 
+	/*test1(arrToInsert);*/
+	
+	testCreateInsertDestroy(arrToInsert);
+	
+	testFind(arrToInsert);
+	
+	testCount(arrToInsert);
+	
+	testBeginEndGetData(arrToInsert);
+	
+	testForEach(arrToInsert);
+	
+	testNextPrev(arrToInsert);
+	
+	testRemove(arrToInsert);
+	
+	
+	testIterInOrderA(arrToInsert);
+	testIterInOrderB(arrToInsert);
+	
+	
+	printf("/------------------------------------------------------/\n");
+	
+    return 0; 	
+ 
+}
+/*------------------------------------------------------------------------------------*/
+
+void testCreateInsertDestroy(int* arrToInsert)
+{
+	int resultIndex = PASS;
+	Tree* tree = initTree(arrToInsert);
+	
+	if(tree == NULL){
+		resultIndex = FAIL;
+	}
+	
+	printf("/------------------------------------------------------/\n");
+	printf("TEST CREATE , INSERT , DESTROY : \n");
+	printf("%s\n", resultArr[resultIndex]);
+	
+	/*clean up*/
+	TreeDestroy(tree);	
+
+}
+
+Tree* initTree(int* arrToInsert)
+{
+	int i;
+	CompFunc compFunc = IntCompFunc;
+	
+	Tree* tree = TreeCreate(compFunc);
+	if(tree == NULL){
+		return NULL;
+	}
+
+	for(i=0; i < NUM_OF_ITEMS; i++){ 
+		TreeInsert(tree, &arrToInsert[i]);
+	}
+	
+	return tree;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+
+void testFind(int* arrToInsert)
+{
+	int resultIndex = PASS;
+	int* intToFind;
+	int intToNotFind = -1;
+	TreeItr stub = NULL;
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+	
+	/*positive test*/
+	intToFind = TreeGetData(TreeFind(tree , &arrToInsert[NUM_OF_ITEMS/2] )); 
+	if(*intToFind != arrToInsert[NUM_OF_ITEMS/2]){
+		resultIndex = FAIL;
+	}
+	
+	/*negetive test*/
+	stub = TreeFind(tree , &intToNotFind ); 
+	if( TreeGetData(stub) != NULL ){
+		resultIndex = FAIL;
+	}
+	
+	/*clean up*/
+	TreeDestroy(tree);	
+	
+	printf("/------------------------------------------------------/\n");
+	printf("TEST FIND : \n");
+	printf("%s\n", resultArr[resultIndex]);
+	
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+
+void testCount(int* arrToInsert)
+{
+	int resultIndex = PASS;
+	int count = 0;
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+	
+	count = TreeCount(tree); 
+	if(count != NUM_OF_ITEMS){
+		resultIndex = FAIL;
+	}
+
+	/*clean up*/
+	TreeDestroy(tree);	
+	
+	printf("/------------------------------------------------------/\n");
+	printf("TEST COUNT : \n");
+	printf("%s\n", resultArr[resultIndex]);
+	
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void testBeginEndGetData(int* arrToInsert)
+{
+	int resultIndex = PASS;
+	int beginVal = 0 , largeVal = 0 , prevStubVal = 0, i = 0;
+	TreeItr stub;
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+	
+	/*test begin*/
+	beginVal = *((int*)TreeGetData(TreeBegin(tree))); 
+	for(i = 0 ; i < NUM_OF_ITEMS; i++){
+		if( beginVal > arrToInsert[i] ){
+			resultIndex = FAIL;
+		}
+	}
+	
+	/*test largest*/
+	largeVal = *((int*)TreeGetData(TreeLargest(tree))); 
+	for(i = 0 ; i < NUM_OF_ITEMS; i++){
+		if( largeVal < arrToInsert[i] ){
+			resultIndex = FAIL;
+		}
+	}
+	
+	/*see that largest is prev of stub(tree end)*/
+	stub = TreeEnd(tree);
+	prevStubVal = *( (int*) TreeGetData(TreePrev(stub)));
+	if( largeVal != prevStubVal){
+		resultIndex = FAIL;
+	}
+	
+	/*clean up*/
+	TreeDestroy(tree);	
+	
+	printf("/------------------------------------------------------/\n");
+	printf("TEST BEGIN , END, GET DATA : \n");
+	printf("%s\n", resultArr[resultIndex]);
+
+
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void testForEach(int* arrToInsert)
+{
+	int resultIndex = PASS;
+	int paramSum=0 , realSum=0 ,  i=0;
+	DoFunc doFuncSum = DoFuncSum;
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+	
+	/*test for each*/
+	TreeForEach(tree, IN_ORDER, doFuncSum , &paramSum);
+	
+	for(i = 0 ; i < NUM_OF_ITEMS; i++){
+		realSum += arrToInsert[i];
+	}
+	
+	if(paramSum != realSum){
+		resultIndex = FAIL;
+	}
+	
+	/*clean up*/
+	TreeDestroy(tree);	
+	
+	printf("/------------------------------------------------------/\n");
+	printf("TEST FOR EACH : \n");
+	printf("%s\n", resultArr[resultIndex]);
+
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void testNextPrev(int* arrToInsert)
+{
+	int resultIndex = PASS;
+	int i=0 , curVal = 0;
+	TreeItr iter;
+	int sortedArr[NUM_OF_ITEMS];
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+	
+	memcpy(sortedArr , arrToInsert , sizeof(int) * NUM_OF_ITEMS);
+	
+	/*sort arr for check*/
+	sortArr(sortedArr);
+	
+	/*check next*/
+	iter = TreeBegin(tree);
+	for(i=0; i < NUM_OF_ITEMS; i++){ 
+		curVal = *((int*)TreeGetData(iter));
+		if(curVal != sortedArr[i]){
+			resultIndex = FAIL;
+			break;
+		}
+		iter = TreeNext(iter);
+	}
+	
+	/*check prev*/
+	iter = TreeLargest(tree);
+	for(i=0; i < NUM_OF_ITEMS; i++){ 
+		curVal = *((int*)TreeGetData(iter));
+		if(curVal != sortedArr[NUM_OF_ITEMS - i - 1]){
+			resultIndex = FAIL;
+			break;
+		}
+		iter = TreePrev(iter);
+	}
+	
+	
+	/*clean up*/
+	TreeDestroy(tree);	
+	
+	printf("/------------------------------------------------------/\n");
+	printf("TEST NEXT PREV : \n");
+	printf("%s\n", resultArr[resultIndex]);
+
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void testRemove(int* arrToInsert)
+{
+	int resultIndex = PASS;
+	int removeVal=0 , count=0 , curVal=MAX_VAL , savVal=MAX_VAL*(-1) ;
+	TreeItr iter;
+	
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+		
+	/*test remove*/
+	iter = TreeFind(tree , &arrToInsert[0] );
+	removeVal = *((int*)TreeRemove(iter));
+	
+	/*test removed val*/
+	if(removeVal != arrToInsert[0]){
+		resultIndex = FAIL;
+	}
+	
+	/*test items count after remove*/
+	count = TreeCount(tree); 
+	if(count != NUM_OF_ITEMS-1){
+		resultIndex = FAIL;
+	}
+	
+	/*test tree validity after remove*/
+	iter = TreeBegin(tree);
+	while(iter != TreeEnd(tree)){
+		curVal =  *((int*)TreeGetData(iter));
+		if(curVal < savVal){
+			resultIndex = FAIL;
+			break;
+		}
+		savVal = *((int*)TreeGetData(iter));
+		iter = TreeNext(iter);
+	}
+	
+	/*tring to remove stub*/ 
+	iter = TreeEnd(tree);
+	TreeRemove(iter);
+	
+	
+	/*clean up*/
+	TreeDestroy(tree);	
+	
+	printf("/------------------------------------------------------/\n");
+	printf("TEST REMOVE : \n");
+	printf("%s\n", resultArr[resultIndex]);
+
+}
+
+/*------------------------------------------------------------------------------------*/
+
+
+void testIterInOrderA(int* arrToInsert)
+{
+	/*int resultIndex = PASS;*/
+	DoFunc doFuncSum = DoFuncPrt;
+	int param;
+	TreeItr iter;
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+	
+	printf("/------------------------------------------------------/\n");
+	printf("ITERATIVE IN ORDER WITH STACK : \n");	
+	
+	iter = TreeRoot(tree);
+
+	TreeIterInorderA(iter, doFuncSum , &param);
+
+	printf("\n");
+}
+
+
+
+
+void testIterInOrderB(int* arrToInsert)
+{
+	/*int resultIndex = PASS;*/
+	DoFunc doFuncSum = DoFuncPrt;
+	int param;
+	TreeItr iter;
+	
+	/*init*/
+	Tree* tree = initTree(arrToInsert);
+	
+	printf("/------------------------------------------------------/\n");
+	printf("ITERATIVE IN ORDER WITHOUT STACK : \n");
+	
+	iter = TreeRoot(tree);
+
+	TreeIterInorderB(iter, doFuncSum , &param);
+
+	printf("\n");
+
+}
+
+
+
+/*------------------------------------------------------------------------------------*/
+void test1(int* arrToInsert)
+{
+	int i;
+	int* intToFind;
+	int paramSum=0;
+	CompFunc compFunc = IntCompFunc;
+	DoFunc doFuncSum = DoFuncSum;
+	DoFunc doFuncPrt = DoFuncPrt;
+	TreeItr iter;
+	Data dataToGet;
+	
+	Tree* tree = TreeCreate(compFunc);
+	if(tree == NULL){
+		return;
+	}
+	
+	/*test insert*/
+	for(i=0; i < NUM_OF_ITEMS; i++){ 
+		TreeInsert(tree, &arrToInsert[i]);
+	}
+	
+	PrintTree(tree);
+	
+	/*test find node*/
+	intToFind = TreeGetData(TreeFind(tree , &arrToInsert[5] ));
+	
+	printf("arrToInsert[5] = %d  , intToFind = %d\n" , arrToInsert[5]  , *intToFind  );
+	
+	/*test begin and next*/
+	iter = TreeBegin(tree);
+	
+	while( (intToFind = TreeGetData(iter))  != NULL ) {
+		printf("%d , ", *intToFind);
+		iter = TreeNext(iter);
+	}
+	printf("\n");
+
+	/*test end and prev*/
+	iter = TreeLargest(tree);
+	
+	while( (intToFind = TreeGetData(iter))  != NULL ) {
+		printf("%d , ", *intToFind);
+		iter = TreePrev(iter);
+	}
+	printf("\n");
+
+	/*test for each*/
+	TreeForEach(tree, IN_ORDER, doFuncSum , &paramSum);
+	printf("sum = %d \n", paramSum);
+
+	printf("in order :\n");
+	TreeForEach(tree, IN_ORDER, doFuncPrt , &paramSum);
+	printf("\n");
+	
+	printf("pre order :\n");
+	TreeForEach(tree, PRE_ORDER, doFuncPrt , &paramSum);
+	printf("\n");
+	
+	printf("post order :\n");
+	TreeForEach(tree, POST_ORDER, doFuncPrt , &paramSum);
+	printf("\n");
+	
+	/*test count*/
+	printf("count = %d \n", TreeCount(tree) );
+
+
+	/*test remove*/
+	/*iter = TreeFind(tree , &arrToInsert[0] );*/
+	iter = TreeLargest(tree);
+	dataToGet = TreeRemove(iter);
+	
+	printf("data to get: %d \n", *(int*)dataToGet);
+	
+	PrintTree(tree);
+
+	/*clean up*/
+	TreeDestroy(tree);	
+}
+
+
+
+/*------------------------------------------------------------------------------------*/
+
+
+int IntCompFunc(Data _data1, Data _data2)
+{
+	return ( *(int*)_data1 - *(int*)_data2);
+}
+
+/*------------------------------------------------------------------------------------*/
+
+int DoFuncSum(Data _data, Parm _parm)
+{
+	*(int*)_parm += *(int*)(_data);
+	
+	return 0;
+}
+
+int DoFuncPrt(Data _data, Parm _parm)
+{
+	printf(" %d , ", *(int*)(_data));
+	
+	return 0;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void sortArr(int* arrToSort)
+{
+	int i,j,temp;
+	
+	for(i=0;i<NUM_OF_ITEMS;i++){
+		for(j=i;j<NUM_OF_ITEMS;j++){
+			if(arrToSort[i]>arrToSort[j]){
+				temp = arrToSort[i];
+				arrToSort[i] = arrToSort[j];
+				arrToSort[j] = temp;
+			}
+		}
+	}
+}
+
+/*------------------------------------------------------------------------------------*/

@@ -1,0 +1,324 @@
+/**************************************************************************************
+    Author : Tomer Dery
+    Creation date :      08.01.14
+    Date last modified : 09.01.14
+     Description : HashMap
+***************************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <string.h>
+#include <time.h>
+
+#include "hash.h"
+
+/*------------------------------------------------------------------------------------*/
+
+#define NUM_OF_ITEMS 10
+
+#define MIN_VAL 100000000
+#define MAX_RAND 899999999
+#define MAX_AGE 120
+
+#define HASH_SIZE 10
+
+typedef enum {FAIL,PASS} Result;
+char* resultArr[2] = {"FAIL","PASS"};
+#define SUCCESS 1
+
+#define DEBUG 0
+
+
+typedef struct Person{
+	int m_id;
+	int m_age;
+	int m_count;
+}Person; 
+
+int count = 0;
+/*------------------------------------------------------------------------------------*/
+
+int IntCompFunc(Key _key1, Key _key2);
+
+int HashFuncId (Key _id, size_t _size);
+
+int HashDoFuncSum(Key _key, Data _data, Param _param);
+int HashDoFuncPrint(Key _key, Data _data, Param _param);
+
+/*------------------------------------------------------------------------------------*/
+void InitData(Person* _arrToPersons);
+
+void Test1(Person* _arrToPersons);
+
+void CreateInsertTest(Person* _arrToPersons);
+void RemoveCountTest(Person* _arrToPersons);
+void FindTest(Person* _arrToPersons);
+void ForEachTest(Person* _arrToPersons);
+/*------------------------------------------------------------------------------------*/
+
+
+int main(int argc,char** argv)
+{	
+	Person arrToPersons[NUM_OF_ITEMS]; 
+	
+	
+	printf("/------------------------------------------------------/\n");
+
+	/*Test1(arrToPersons);*/
+
+	CreateInsertTest(arrToPersons);
+	
+	RemoveCountTest(arrToPersons);
+
+	FindTest(arrToPersons);
+
+	ForEachTest(arrToPersons);
+
+	printf("/------------------------------------------------------/\n");
+	
+    return 0; 	
+ 
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void CreateInsertTest(Person* _arrToPersons)
+{
+	int i, resultIndex = PASS;
+	Data dataInserted;
+	HashMap* hash = NULL; 
+	HashFunc hashFuncId = HashFuncId;
+	CompFunc intCompFunc = IntCompFunc;
+	
+	InitData(_arrToPersons);
+
+	/*create*/
+	hash = HashCreate(HASH_SIZE , hashFuncId, intCompFunc);
+
+	/*insert*/
+	for(i=0; i<NUM_OF_ITEMS; i++){
+		dataInserted = HashInsert(hash, &_arrToPersons[i].m_id , &_arrToPersons[i]);
+		if( ((Person*)dataInserted)->m_id != _arrToPersons[i].m_id  ){
+			resultIndex = FAIL;
+		}	
+	}
+
+	/*cleanup*/
+	HashDestroy(hash);
+
+	printf("CreateInsertTest : "); 
+	printf("%s\n", resultArr[resultIndex]); 
+	printf("/------------------------------------------------------/\n");
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void RemoveCountTest(Person* _arrToPersons)
+{
+	int i, resultIndex = PASS;
+	Data dataFound;
+	HashMap* hash = NULL; 
+	HashFunc hashFuncId = HashFuncId;
+	CompFunc intCompFunc = IntCompFunc;
+	
+	InitData(_arrToPersons);
+
+	/*create*/
+	hash = HashCreate(HASH_SIZE , hashFuncId, intCompFunc);
+
+	if( HashCountItems(hash) != 0){
+		resultIndex = FAIL;
+	}
+
+	/*insert*/
+	for(i=0; i<NUM_OF_ITEMS; i++){
+		HashInsert(hash, &_arrToPersons[i].m_id , &_arrToPersons[i]);
+	}
+
+	if( HashCountItems(hash) != NUM_OF_ITEMS){
+		resultIndex = FAIL;
+	}
+
+	/*remove*/
+	dataFound = HashRemove(hash, &_arrToPersons[0].m_id);
+	if( ((Person*)dataFound)->m_id  != _arrToPersons[0].m_id){
+		resultIndex = FAIL;
+	}
+
+	if( HashCountItems(hash) != NUM_OF_ITEMS -1 ){
+		resultIndex = FAIL;
+	}
+
+	/*cleanup*/
+	HashDestroy(hash);
+
+	printf("RemoveCountTest : "); 
+	printf("%s\n", resultArr[resultIndex]); 
+	printf("/------------------------------------------------------/\n");
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void FindTest(Person* _arrToPersons)
+{
+	int i, resultIndex = PASS;
+	Data dataFound;
+	HashMap* hash = NULL; 
+	HashFunc hashFuncId = HashFuncId;
+	CompFunc intCompFunc = IntCompFunc;
+	
+	InitData(_arrToPersons);
+
+	/*create*/
+	hash = HashCreate(HASH_SIZE , hashFuncId, intCompFunc);
+
+	/*insert*/
+	for(i=0; i<NUM_OF_ITEMS; i++){
+		HashInsert(hash, &_arrToPersons[i].m_id , &_arrToPersons[i]);
+	}
+
+	/*find*/
+	dataFound = HashFind(hash, &_arrToPersons[0].m_id);
+	if( ((Person*)dataFound)->m_id  != _arrToPersons[0].m_id){
+		resultIndex = FAIL;
+	}
+
+	/*cleanup*/
+	HashDestroy(hash);
+
+	printf("FindTest : "); 
+	printf("%s\n", resultArr[resultIndex]); 
+	printf("/------------------------------------------------------/\n");
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void ForEachTest(Person* _arrToPersons)
+{
+	int i, resultIndex = PASS , ageSumCalc=0 , ageSumReal =0;
+	HashMap* hash = NULL; 
+	HashFunc hashFuncId = HashFuncId;
+	CompFunc intCompFunc = IntCompFunc;
+	HashDoFunc hashDoFuncSum = HashDoFuncSum;
+	
+	InitData(_arrToPersons);
+
+	/*create*/
+	hash = HashCreate(HASH_SIZE , hashFuncId, intCompFunc);
+
+	/*insert*/
+	for(i=0; i<NUM_OF_ITEMS; i++){
+		HashInsert(hash, &_arrToPersons[i].m_id , &_arrToPersons[i]);
+		ageSumReal += _arrToPersons[i].m_age;
+	}
+
+	/*find*/
+	HashForEach(hash, hashDoFuncSum, &ageSumCalc);
+	if( ageSumCalc != ageSumReal ){
+		resultIndex = FAIL;
+	}
+
+	/*cleanup*/
+	HashDestroy(hash);
+
+	printf("ForEachTest : "); 
+	printf("%s\n", resultArr[resultIndex]); 
+	printf("/------------------------------------------------------/\n");
+}
+
+/*------------------------------------------------------------------------------------*/
+
+
+void InitData(Person* _arrToPersons)
+{
+	int i;
+		
+	srand (time(NULL));	
+	for(i=0; i<NUM_OF_ITEMS; i++){
+	  	_arrToPersons[i].m_id =  MIN_VAL + rand() % MAX_RAND + 1;
+		_arrToPersons[i].m_age = rand() % MAX_AGE + 1;
+		_arrToPersons[i].m_count = ++count;
+	}
+
+}
+
+/*------------------------------------------------------------------------------------*/
+void Test1(Person* _arrToPersons)
+{
+	int i;
+	CompFunc intCompFunc = IntCompFunc;
+	HashFunc hashFuncId = HashFuncId;
+	Data dataFound;
+	HashMap* hash = NULL;
+
+	InitData(_arrToPersons);
+
+	/*create*/
+	hash = HashCreate(HASH_SIZE , hashFuncId, intCompFunc);
+
+	/*insert*/
+	for(i=0; i<NUM_OF_ITEMS; i++){
+		HashInsert(hash, &_arrToPersons[i].m_id , &_arrToPersons[i]);
+	}
+
+	/*print*/
+	HashForEach(hash, HashDoFuncPrint, NULL);
+	printf("/------------------------------------------------------/\n");
+	
+	/*find*/
+	dataFound = HashFind(hash, &_arrToPersons[0].m_id);
+	printf("person 1 => id : %d\n", ((Person*)dataFound)->m_id );
+	printf("/------------------------------------------------------/\n");
+	
+	/*remove*/
+	dataFound = HashRemove(hash, &_arrToPersons[0].m_id);
+	printf("person 1 removed => id : %d\n", ((Person*)dataFound)->m_id );
+	printf("/------------------------------------------------------/\n");
+
+	/*print*/
+	HashForEach(hash, HashDoFuncPrint, NULL);
+	printf("/------------------------------------------------------/\n");
+
+	printf("HashCountItems => %d , HashCountBuckets => %d\n", HashCountItems(hash), HashCountBuckets(hash));
+
+	/*cleanup*/
+	HashDestroy(hash);
+	
+}
+
+/*------------------------------------------------------------------------------------*/
+
+int HashFuncId (Key _id, size_t _size)
+{
+	return ((*(int*)_id) % _size);
+}
+
+/*------------------------------------------------------------------------------------*/
+
+int IntCompFunc(Key _key1, Key _key2)
+{
+	return ( *(int*)_key1 - *(int*)_key2);
+}
+
+/*------------------------------------------------------------------------------------*/
+
+int HashDoFuncSum(Key _key, Data _data, Param _param)
+{
+    *(int*)_param += ((Person*)_data)->m_age 
+	return SUCCESS;
+}
+
+
+int HashDoFuncPrint(Key _key, Data _data, Param _param)
+{
+	printf("id=> %d , age=> %d , count=> %d\n",  *(int*)_key , ((Person*)_data)->m_age , ((Person*)_data)->m_count );
+	return SUCCESS;
+}
+/*------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+

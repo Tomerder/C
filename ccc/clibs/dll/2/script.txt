@@ -1,0 +1,9 @@
+gcc -c count.c
+
+#creating shared object
+gcc -shared -o count.so count.o
+
+#remove unnecessery object
+rm count.o
+
+

@@ -1,0 +1,172 @@
+#include<stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include "queue.h"
+#include "err.h"
+
+
+#define SIZE 10
+#define PRINT_ERR if(err!=0){ printf("FAIL: error no. %d  , ",err); }else{printf("PASS ,");}
+
+void PrintFuncInt(Item _item);
+void InsertRemoveTest();
+void OverflowTest();
+void UnderflowTest();
+
+
+/*------------------------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{
+
+	InsertRemoveTest();
+	OverflowTest();
+	UnderflowTest();
+
+
+    return 0; 	
+}
+
+/*------------------------------------------------------------------------------------*/	
+	
+void InsertRemoveTest(){
+	Queue* queue; 
+	Item item=NULL;
+	/*PrintFunc printfunc = PrintFuncInt;*/
+	int err , toInsert = 5;
+
+
+	printf("InsertRemoveTest : ");
+
+	queue = QueueCreate(SIZE);   /*setup*/
+
+	err=QueueInsert(queue, &toInsert);  /*output test*/
+	PRINT_ERR
+
+	err = QueueRemove(queue, &item);  /*output test*/
+	PRINT_ERR
+
+	if( *((int*)item) == toInsert){   /*functionality test*/
+		printf("PASS\n");
+	}else{
+		printf("FAIL\n");
+	}
+	
+	
+	/*QueuePrint(queue,printfunc);*/
+
+	QueueDestroy(queue);    /*cleanup*/
+
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void OverflowTest(){
+	Queue* queue; 
+	Item item = NULL;
+	/*PrintFunc printfunc = PrintFuncInt;*/
+	int arrToInsert[SIZE+1];
+	int i=0, err=0;
+	
+
+	printf("OverflowTest : ");
+	queue = QueueCreate(SIZE);   /*setup*/
+	
+	while(i<SIZE+1){
+		arrToInsert[i] = i;
+		err = QueueInsert(queue, &(arrToInsert[i]) );  /*insert 10*/
+		i++;
+	}
+
+	if(err != OVERFLOW){               /*output test*/
+		printf("FAIL\n");
+		return;
+	}else{
+		printf("PASS ,");
+	}
+
+	
+	/*functionality test*/
+	if(!IsQueueFull(queue)){ 
+		printf("Fail\n");    
+	}else{
+		printf("PASS , "); 
+	}
+	
+	i=0;
+	while(i<SIZE/2){            
+		err = QueueRemove(queue, &item);      /*remove 5*/
+		if (item != &(arrToInsert[i])){
+			printf("FAIL\n");
+			return;
+		}
+		i++;
+	}
+
+	i=0;
+	while(i<(SIZE)/2){
+		arrToInsert[i] = i*10;            /*insert 5*/
+		err = QueueInsert(queue, &(arrToInsert[i]) );
+		i++;
+	}
+
+	if(!IsQueueFull(queue)){ 
+		printf("FAIL\n");    
+ 		return;
+	}
+
+	err = QueueRemove(queue, &item);  
+	
+	if(IsQueueFull(queue)){ 
+		printf("FAIL\n");    
+ 		return;
+	}
+		
+	/*QueuePrint(queue,printfunc);*/ 
+	printf("PASS\n");
+
+	QueueDestroy(queue);    /*cleanup*/
+	
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void UnderflowTest(){
+	Queue* queue; 
+	Item item = NULL;
+	PrintFunc printfunc = PrintFuncInt;
+	int err=0;
+	
+
+	printf("UnderflowTest : ");
+	queue = QueueCreate(SIZE);   /*setup*/
+
+	err = QueueRemove(queue, &item);     
+	if (err != UNDERFLOW){        /*output test*/
+		printf("FAIL\n");
+		return;
+	}else{
+		printf("PASS , ");
+	}
+
+	/*functionality test*/
+	if(!IsQueueEmpty(queue)){ 
+		printf("FAIL\n");    
+	}else{
+		printf("PASS\n "); 
+	}
+
+	QueuePrint(queue,printfunc);
+}
+
+
+
+/*------------------------------------------------------------------------------------*/
+void PrintFuncInt(Item _item){
+	printf("%d" , *((int*)(_item))  );
+
+
+}
+
+

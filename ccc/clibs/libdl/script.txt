@@ -1,0 +1,10 @@
+gcc dl.c -o dl -ldl
+
+echo "mul from cur lib" 
+./dl 
+
+echo "glob from cur lib" 
+./dl ./count.so global 1
+
+echo "glob from so lib" 
+./dl ./so/count.so global 1

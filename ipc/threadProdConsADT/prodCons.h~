@@ -1,0 +1,10 @@
+#ifndef __PRODCONS_H__
+#define __PRODCONS_H__
+
+#include <pthread.h>
+
+#include "queue.h"
+
+
+
+#endif /* #ifndef __PRODCONS_H__ */

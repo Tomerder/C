@@ -1,0 +1,8 @@
+Sched.o: Sched.c Sched.h Adt.h Err.h Task.h heap.h vec.h config.h log.h
+Task.o: Task.c Task.h Adt.h Err.h Time.h log.h
+Time.o: Time.c Time.h
+vec.o: vec.c vec.h Adt.h Err.h
+heap.o: heap.c heap.h Adt.h Err.h vec.h
+log.o: log.c log.h
+config.o: config.c config.h vec.h Adt.h Err.h
+main.o: main.c Sched.h Adt.h Err.h Task.h

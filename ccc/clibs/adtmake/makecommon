@@ -1,0 +1,23 @@
+CC = gcc
+cFLAGS = -g
+ARCHIVE = lib.a
+
+$(EXE) : $(ME)
+	$(CC) $(cFLAGS) -g $(ME) -o $(EXE)
+#	$(CC) $(cFLAGS) -g $(ME) $(ARCHIVE) -o $(EXE)
+
+$(ME): $(ME:.o=.c)
+	$(CC) $(cFLAGS) -c -g $(ME:.o=.c) -I../AINCLUDE 
+ 	
+include depends
+depends:
+	gcc -MM $(ME:.o=.c) > depends
+ 	
+clean:
+	rm -f *.o *~ exe
+	
+
+
+
+
+

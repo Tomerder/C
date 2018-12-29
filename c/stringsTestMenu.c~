@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include "strings.h"
+
+
+void enterBetweenWordApi();
+void decBinApi();
+void bigIntsApi();
+void squeezeApi();
+void anyApi();
+
+
+int main(int argc,char** argv)
+{	
+	
+	int cont = 1;			
+	unsigned int option;
+	
+	while (cont) {
+		printf("Choose option: \n");
+		printf("1: enterBetweenWord  \n");
+		printf("2: DecBin    \n");
+		printf("3: BigInts  \n");
+        printf("4: Squeeze  \n");
+		printf("5: Any  \n");
+		printf("Any another number - stop \n");
+
+		scanf("%d", &option);
+		switch (option) {
+			case 1:
+				enterBetweenWord();	break;
+			case 2:
+				decBinApi();		break;
+			case 3:
+				bigIntsApi();	break;
+			case 4:
+				squeezeApi();	break;
+			case 5:
+				anyApi();	break;
+
+			default: cont = 0;	break;
+		}
+	}
+	
+
+	return 0;
+}
+
+
+
+void enterBetweenWordApi(){
+	enterBetweenWord()
+}
+
+
+void decBinApi(){
+	int num=0;	
+	char c;	
+	int cont=1;
+
+	while(cont){
+		printf("Enter a number : ");
+		scanf("%d",&num);
+		if(num<0)
+			cont=0;
+		else{
+			printf("press 'b' if you wish to convert from decimal to binary and any other key for converting binary to decimal : ");	
+			
+			fflush(stdout);	
+			while(c=getchar()!='\n');
+			
+
+			if(c=getchar()=='b')
+				printf("%d\n",decToBin(num));
+			else 
+				printf("%d\n",binarToDec(num));		
+				
+		}
+	}
+
+}
+
+
+void bigIntsApi(){
+	
+	char num1[500];
+	char num2[500];
+	
+	
+	printf("Enter first number : ");
+	scanf("%s",&num1);
+	printf("Enter second number : ");
+	scanf("%s",&num2);
+
+	printf("%s\n\n",bigInts(num1,num2));
+
+}
+
+
+void squeezeApi(){
+	char num1[500];
+	char num2[500];
+	
+	
+	printf("Enter first word : ");
+	scanf("%s",&num1);
+	printf("Enter second word : ");
+	scanf("%s",&num2);
+
+	squeeze(num1,num2);
+	/**/	
+
+}
+
+
+void anyApi(){
+	
+	char str1[500];
+	char str2[500];
+	
+	
+	printf("Enter first word : ");
+	scanf("%s",&str1);
+	printf("Enter second word : ");
+	scanf("%s",&str2);
+
+	printf("index is: %d\n",any(str1,str2));	
+
+}
+
+

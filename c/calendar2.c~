@@ -1,0 +1,286 @@
+#include<stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define EXPEND_VALUE 1
+#define N 1
+
+
+
+typedef struct meeting{
+	int start;
+	int end;
+	char subject[50];
+}meeting;
+
+
+typedef struct calendar{
+	meeting* adr;
+	int curIndex;
+	int size;	
+}calendar;
+
+
+
+void Insert(calendar* arr);
+void Find(calendar arr);
+void Remove(calendar* arr);
+
+meeting* create(int n);      /*  ==>     void create(int n , int** adr);     */
+/*void insertNum(calendar* cal, meeting* meet);*/
+void insertNum(calendar* cal,char* subject,int start,int end);
+int removeNum(calendar* arr , int start);
+void printArr(calendar arr); 
+
+
+int main(int argc,char** argv)
+{
+	calendar cal1;	
+     
+    cal1.curIndex = 0;	    
+	cal1.adr = create(N);	
+    cal1.size = N;  
+	
+	int cont = 1;			
+	unsigned int option;
+	
+	while (cont) {
+		printf("Choose option: \n");
+		printf("1: Insert  \n");
+		printf("2: Find    \n");
+		printf("3: Remove  \n");
+		printf("Any another number - stop \n");
+
+		scanf("%d", &option);
+		switch (option) {
+			case 1:
+				Insert(&cal1);	break;
+			case 2:
+				Find(cal1);		break;
+			case 3:
+				Remove(&cal1);	break;
+
+			default: cont = 0;	break;
+		}
+	}
+	
+
+    free(cal1.adr);	
+    return 0; 	
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+Insert(calendar* calPtr){
+    int start,end;
+	char subject[50];  
+	/*meeting* meetPtr = (meeting*)malloc(sizeof(meeting));*/
+
+	printf("Enter subject : ");
+	scanf("%s", &subject);
+	printf("Enter start time : ");
+	scanf("%d",&start);
+    printf("Enter end time : ");
+	scanf("%d",&end);
+
+
+	if(start > end){
+		printf("input errrorrrrrrr\n");
+		return;
+	}
+    
+
+	insertNum(calPtr,subject,start,end);
+	printArr(*calPtr);
+	printf("\n\n");	
+}
+
+
+Remove(calendar* calPtr){
+/*
+	int num;
+	printf("Enter number to remove:\n");
+	scanf("%d",&num);
+	removeNum(calPtr,num);
+	printArr(*calPtr);
+	printf("\n\n");	
+*/
+}
+
+
+Find(calendar arr){
+	
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+meeting* create(int n){ 
+	meeting* adr = (meeting*)malloc(n*sizeof(meeting)); 
+	/*printf("cal->adr %d \n",adr);*/
+	if (adr == NULL){
+		printf("create failed");
+		exit(0);
+	}
+	
+	return adr;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+/*void insertNum(calendar* cal, meeting* meet){*/
+void insertNum(calendar* cal,char* subject,int start,int end){
+	int i=0 , indexToInsert = -1;
+
+	printf("cal->curIndex %d ,cal->size %d \n",cal->curIndex,cal->size);
+	if(cal->curIndex > cal->size){
+		printf("before realloc\n");
+		printf("sizeof(meeting) %d ,cal->adr %d \n",sizeof(meeting),cal->adr);
+	    cal->adr = (meeting*)realloc(cal->adr, (cal->size + EXPEND_VALUE)*sizeof(meeting));                   /*****-******/
+		printf("realloc\n");
+		if (cal->adr == NULL){
+			printf("insert failed");
+			exit(0);
+		}else{
+			cal->size = cal->size + EXPEND_VALUE;
+		   /*	printf("cal->size = cal->size + EXPEND_VALUE; \n"  */
+		}		 
+	}
+
+	
+
+	if(cal->curIndex == 0){     /* empty - first meeting */
+		strcpy(cal->adr[0].subject,subject);
+		cal->adr[0].start = start;
+		cal->adr[0].end = end;
+		(cal->curIndex)++;
+		return;
+	}
+	
+	
+
+	indexToInsert = findIndexToInsertMeeting(cal,start,end);
+
+	printf("index to insert : %d \n",indexToInsert);
+
+
+	strcpy(cal->adr[cal->curIndex].subject,subject);
+	cal->adr[cal->curIndex].start = start;
+	cal->adr[cal->curIndex].end = end;
+	(cal->curIndex)++;
+	
+
+	/*	
+	if(indexToInsert == -1){
+		printf("cannot insert meeting\n");	
+	}else{
+		for(i=cal->curIndex ; i > indexToInsert ; i--){
+			cal->adr[i].start = cal->adr[i-1].start;
+			cal->adr[i].end = cal->adr[i-1].end;
+			strcpy(cal->adr[i].subject,cal->adr[i-1].subject);                
+		}
+		cal->adr[indexToInsert].start = cal->adr[i-1].start;
+	    cal->adr[indexToInsert].end = cal->adr[i-1].end;
+		strcpy(cal->adr[indexToInsert].subject,cal->adr[i-1].subject);
+		(cal->curIndex)++;	
+	}
+	*/
+	/*printf("cal->curIndex %d ,cal->size %d \n",cal->curIndex,cal->size);	*/
+}
+
+
+
+
+int findIndexToInsertMeeting(calendar* cal,int start,int end){
+	int i,indexToInsert = -1;
+	
+	 /* 1 meeting */   /*
+	if(cal->curIndex == 1){    
+		if(cal->adr[0].start)
+		strcpy(cal->adr[0].subject,subject);
+		cal->adr[0].start = start;
+		cal->adr[0].end = end;
+		(cal->curIndex)++;
+		return;
+	}*/
+
+
+	
+	/*
+	printf("1111111111111111\n");	  
+	
+	while(i < cal->curIndex){
+		if(i == 0 && cal->adr[i].start > end){
+			indexToInsert = 0;
+		}else if(i != cal->curIndex -1){    
+			printf("aaaaaaaaaaaaaaaaaaaaa\n");	  
+			if(cal->adr[i-1].end < start && cal->adr[i+1].end > end)
+				indexToInsert = i;
+			printf("zzzzzzzzzzzzzzzzzzzzz\n");	
+		}else if(cal->adr[i-1].end < start){
+			indexToInsert = i;  
+		}
+		i++;
+	 */
+
+		return cal->curIndex;
+	
+
+}
+
+
+
+
+
+/*------------------------------------------------------------------------------------*/
+
+int removeNum(calendar* cal , int start){   /*
+	int i = 0;
+        int flag = 0;
+	while(i < arr->curIndex){
+		if(arr->adr[i] == num){
+			flag = 1;	
+			break;
+		}
+		i++;
+ 	}
+	if (!flag){
+	    printf("not found\n");
+		return -1;  
+	}else{
+		while(i < arr->curIndex){
+			arr->adr[i] = arr->adr[i+1];
+			i++;	
+		}
+		(arr->curIndex)--;
+	}	 		
+	
+	return 0;  */
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void printArr(calendar cal){
+	int i;	
+	for(i=0;i<cal.curIndex;i++){
+		printf("%d : subject=> %s, start=> %d,  end=> %d  \n",i,cal.adr[i].subject,cal.adr[i].start,cal.adr[i].end);
+	}
+	printf("\n");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

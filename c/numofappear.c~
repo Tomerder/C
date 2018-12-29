@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+int printNumOfChars(char* fileName);
+int printNumOfWords(char* fileName);
+
+
+int main(int argc,char** argv)
+{	
+	char* filename="test.txt";  
+	char* filename2="test2.txt";    
+
+	if(printNumOfChars(filename) == -1){
+		printf("errorrr1\n\n");
+	}
+	
+	if(printNumOfWords(filename2) == -1){
+		printf("errorrr2\n\n");
+	}
+	
+	
+	return 0;
+
+}
+
+
+int printNumOfChars(char* fileName){ 
+	FILE *fp;
+	int hashTable[256]={0};
+	char sentence[500];
+	int i= 0;
+	
+
+	if( (fp=fopen(fileName,"r"))==NULL){
+		return -1;
+	}
+	
+
+	while( fgets(sentence , 500 , fp) != NULL){		
+		while(sentence[i] != '\0'){	
+			hashTable[sentence[i]]++;
+			i++;
+		}
+	}
+
+	for(i=0;i<256;i++){
+		if(hashTable[i]>0)
+			printf(" %c : %d \n", (char)i , hashTable[i]);
+	}
+
+	printf("\n\n");
+
+	return 0;
+	
+}
+
+
+
+
+int printNumOfWords(char* fileName){ 
+
+	FILE *fp;
+	int hashTable[256]={0};
+	char sentence[500];
+	int i= 0;
+	char* word;
+
+	if( (fp=fopen(fileName,"r"))==NULL){
+		return -1;
+	}
+	
+
+	while( fgets(sentence , 500 , fp) != NULL){		
+		while(sscanf(sentence ,"%s",  &word) != NULL    ){	
+			printf("%s",word);
+			i++;
+		}
+	}
+
+
+
+
+
+}
+

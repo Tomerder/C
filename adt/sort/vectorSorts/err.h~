@@ -1,0 +1,11 @@
+#ifndef __ERR_H__
+#define __ERR_H__
+
+
+
+typedef enum {SUCCESS,OVERFLOW,ALLOC_FAILED,UNDERFLOW,INDEX_ERROR,EMPTY_OR_ONE,INPUT_ERR} ADTERR;
+
+
+
+
+#endif /* #ifndef __ERR_H__ */

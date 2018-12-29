@@ -1,0 +1,12 @@
+cc=gcc
+cFLAGS=-g -pedantic -ansi -Wall
+
+exe: libStatic.a libShared.so 
+	
+
+libStatic.a: *.o
+	ar rcs $@ *.o
+
+libShared.so: *.o
+	gcc *.o -shared -o libShared.so 
+

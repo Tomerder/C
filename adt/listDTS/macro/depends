@@ -1,0 +1,5 @@
+list.o: list.c list.h adt.h err.h
+main.o: main.c dogList.h dog.h listWraper.h list.h adt.h err.h catList.h \
+ cat.h
+dogList.o: dogList.c dogList.h dog.h listWraper.h list.h adt.h err.h
+catList.o: catList.c catList.h cat.h listWraper.h list.h adt.h err.h

@@ -1,0 +1,59 @@
+/**************************************************************************************
+    Author : Tomer Dery
+    Creation date :      18.02.14    
+    Date last modified : 18.02.14    
+    Description : Ping Pong
+***************************************************************************************/
+#ifndef __PING_PONG_H__
+#define __PING_PONG_H__
+
+/*----------------------------------------------------------------------------------*/
+
+enum{FALSE, TRUE};
+
+#define FILE_ID 'A'
+
+#define NO_FLAGS 0
+
+#define SEMGET_PERMISIONS 0666
+
+#define EOF_SIGN "###EOF###"
+#define HANDSHAKE_SIGN "###HANDSAHKE###"
+#define PONG_EXIT_SIGN "###PONGEXIT###"
+
+/*Errors types*/
+enum{OK_E , FTOK_E , MSGQ_CREATE_E , ALLOC_E, THREAD_JOIN_E, SEM_INIT_E, MUTEX_INIT_E};
+
+enum{NOT_SHAREABLE, SHAREABLE};
+
+/*----------------------------------------------------------------------------------*/
+#define MAX_MSG_SIZE 64
+
+#define FILE_NAME "MQping"
+#define FILE_NAME_HANDSHAKE "MQpong"
+
+#define DEFAULT_WORK_TIME 1000000
+#define DEFAULT_N_OF_MSG_PER_PONG 20
+
+#define MICROSEC_MUL_RES 1000
+
+#define DEFAULT_MSGQ_CAPACITY 10
+#define DEFAULT_TOT_MSGQ_SIZE 100000
+#define DEFAULT_NUM_OF_MSGS_PER_PONG 24
+
+/*----------------------------------------------------------------------------------*/
+
+#define ERROR -1
+
+#define CHK_NULL(PTR)  if(PTR == NULL) return NULL;
+#define CHK_NULL_ERR(PTR, ERR)  if(PTR == NULL) return ERR;
+
+#define CHK_ERR(ERR)  if(ERR != OK_E) { printf("ERROR : %d\n", ERR); return ERR;}
+#define CHK_ERR_RET(ERR,TO_RET)  if(ERR != OK_E) { printf("ERROR : %d\n", ERR); return TO_RET;}
+
+#define PRINT_D(MSG) if(DEBUG) { printf(MSG); }
+#define PRINT_N_D(MSG,N) if(DEBUG) { printf(MSG,N); }
+
+/*----------------------------------------------------------------------------------*/
+
+#endif /* #ifndef __PING_PONG_H__ */

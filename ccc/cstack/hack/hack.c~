@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*--------------------------------------------------------------*/
+
+void func1();
+void func2();
+
+/*--------------------------------------------------------------*/
+
+int stopFlag = 0;
+
+/*--------------------------------------------------------------*/
+
+int main()
+{
+	printf("/*----------------------------------------------------*/\n");
+	printf("main - begin\n");
+	
+	volatile unsigned i=5;
+	unsigned j=7;
+	
+
+	printf("&i : %x\n" , (unsigned)&i );
+	printf("&j : %x\n" , (unsigned)&j );
+	
+	if(!stopFlag){
+		stopFlag = 1;		
+		func1();
+	}
+	
+	printf("i = %d\n", i);
+	printf("j = %d\n", j);
+	
+	printf("main - end\n");
+	printf("/*----------------------------------------------------*/\n");
+	
+	return 0;
+}
+
+/*--------------------------------------------------------------*/
+
+void func1()
+{
+	printf("/*----------------------------------------------------*/\n");
+	printf("func1 - begin\n");
+
+	unsigned func2Adr = (unsigned)func2; 
+	char* iAdr = (char*)&func2Adr + 56;    /*i*/  
+	char* returnAdr = (char*)&func2Adr + 28;  
+	
+	printf("func2Adr: %x\n" , func2Adr );
+	printf("iAdr: %x\n" , (unsigned)iAdr );
+	printf("returnAdr : %x\n" , (unsigned)returnAdr );
+
+	unsigned replaceI = 777777;
+
+	memcpy(iAdr , &replaceI , 4);
+	
+	memcpy(returnAdr , &func2Adr , 4);
+
+	
+	printf("func1 - end\n");
+}
+
+/*--------------------------------------------------------------*/
+
+void func2()
+{
+	printf("/*----------------------------------------------------*/\n");
+	printf("func2 - begin\n");
+
+	unsigned mainAdr = (unsigned)main; 
+	char* returnAdr = (char*)&mainAdr + 28;  
+
+	char* iAdr = (char*)&mainAdr + 20;   
+
+	printf("iAdr: %x\n" , (unsigned)iAdr );
+
+	unsigned replaceI = 777777;
+
+	memcpy(iAdr , &replaceI , 4);
+
+	memcpy(returnAdr , &mainAdr , 4);
+
+	printf("func2 - end\n");
+}
+
+/*--------------------------------------------------------------*/

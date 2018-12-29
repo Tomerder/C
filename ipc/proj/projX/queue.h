@@ -1,0 +1,43 @@
+/**************************************************************************************
+    Author :				Alex Katz
+    Creation date :      	10.1.12
+    Date last modified :
+    Description : 			Circular Queue Implementation. Using fixed length vector and
+							data item stored in the vector.
+***************************************************************************************/
+#ifndef __QUEUE_H__
+#define __QUEUE_H__
+#include "err.h"
+
+/*---------------------------------------------------------*/
+
+typedef void* Item;
+typedef struct Queue Queue;
+typedef void(*PrintFunc)(Item _item);
+
+/*---------------------------------------------------------*/
+
+/*	size   - max number of elements in the queue */
+Queue*   QueueCreate (size_t _size);
+
+void	 QueueDestroy(Queue* _queue);
+
+ADTERR	 QueueInsert (Queue* _queue, Item _item);
+ADTERR	 QueueRemove (Queue* _queue , Item* _item);
+
+int		 IsQueueEmpty(Queue* _queue);
+int		 IsQueueFull (Queue* _queue);
+
+void 	 QueuePrint	 (Queue *_queue, PrintFunc _printFunc);
+
+/*---------------------------------------------------------*/
+
+/*queue is allocated outside of this class and QueueInit only inits DM of allocated queue*/ 
+Queue*   QueueInit (char* _memAllocated, size_t _size);
+
+/*API to "ask" queue how mach space needs to be allocated for num of items*/
+int  	 QueueNeededSize(int _nItems);
+
+/*---------------------------------------------------------*/
+
+#endif /*__QUEUE_H__*/

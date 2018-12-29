@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include <math.h>
+
+
+int globalInt;
+static int globalStaticInt;
+
+int main(int argc,char** argv)
+{	
+	char arr1[10]={"aaaaaa"};
+	char arr2[10];
+	char* arr3 = "bbb";
+
+	arr3 = "abchkjhkjf";
+	//arr3[0] = '1';    //seg fault
+
+	arr1[0] = 't';
+
+	//scanf("%s",arr2);
+
+	printf("%s\n %s\n %s\n",arr1 , arr2 , arr3);
+
+	func1();
+
+
+	printf("end\n");
+	return 0;
+
+}
+
+
+
+void func1(){
+	char* str = malloc(5*sizeof(char));
+	char str2;
+	printf("func1\n");
+
+	str2 = "aaaaaaaaaaajklllllllllllllllllllllaaaaaaaaaaaaaaaaaaaaaaaaafunc2" ;
+
+
+}
+
+
+
+void func2(){
+	printf("func2\n");
+
+
+}
+

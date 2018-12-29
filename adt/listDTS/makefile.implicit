@@ -1,0 +1,44 @@
+# standard options
+CC=gcc
+CFLAGS= -ansi -pedantic -Werror -Wall
+OBJS= main.o linkedList.o person.o 
+
+.PHONY: clean  
+
+# type-safe generated files
+OBJP= personlist.o
+PREPS= personlist.c personlist.h
+
+# list of generated files - leave them be and force making them
+#  and a special target
+.PRECIOUS: $(PREPS)
+
+# force C compiler for .ct and .ht files
+CFORCE= -x c  
+CFLAGS += $(CFORCE)
+
+# redefine suffixes to include template type-safe files
+.SUFFIXES:
+.SUFFIXES: .o .c .h .ct .ht
+
+# implicit rules to generate typesafe files
+.ct.c:
+	$(CC) -E $(CFORCE) $< | tr '@' '\n' | sed '/#/ d' >$@
+	
+.ht.h:
+	$(CC) -E $(CFORCE) $< | tr '@' '\n' | sed '/#/ d' >$@
+
+my_exe: $(OBJP) $(OBJS)
+	$(CC)  $(OBJS) $(OBJP) -o $@
+
+
+# has to force depends to use preprocessor generated files
+depends: $(PREPS)
+	 $(CC) $(CFORCE) -MM $(OBJS:.o=.c) $(OBJP:.o=.ct) > depends
+
+include depends
+	 
+clean:
+	rm my_exe *.o depends $(PREPS)
+
+

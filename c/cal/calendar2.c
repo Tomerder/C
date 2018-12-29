@@ -1,0 +1,201 @@
+#include<stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "calendar2.h"
+
+/*
+#define EXPEND_VALUE 4
+#define N 4
+*/
+
+int Insert(calendar* cal , meeting* meet);
+int Find(calendar cal , meeting* meet);
+int Remove(calendar* cal , int startHour);
+
+meeting** create(int n);          
+void printArr(calendar cal); 
+void freeAll(calendar* cal);   
+static int findIndexToInsert(calendar* cal , int start , int end);
+static void shiftR(calendar* cal , int indexToInsert);
+
+
+/*------------------------------------------------------------------------------------*/
+
+meeting** create(int n){ 
+	meeting** adr = (meeting*)malloc(n*sizeof(meeting*)); 
+	/*if (adr == NULL){
+		printf("create failed\n");
+		exit(0);
+	}
+	*/
+	return adr;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+int Insert(calendar* cal , meeting* meet){
+    
+	int indexToInsert;	
+
+	if(cal->curIndex > cal->size){
+		printf("realloc\n");
+	    cal->adr = (meeting**)realloc(cal->adr, (cal->size + EXPEND_VALUE)*sizeof(meeting*)); 
+		if (cal->adr == NULL){
+			/*printf("Insert failed\n");*/
+			return -1;
+		}else{
+			cal->size = cal->size + EXPEND_VALUE;
+		}
+	}
+
+		
+	indexToInsert = findIndexToInsert(cal , meet->start , meet->end);
+	if(indexToInsert==-1){
+		/*printf("meeting overlap\n");*/
+		return -1;
+	}
+	shiftR(cal , indexToInsert);
+	
+
+	cal->adr[indexToInsert] = meet; 
+	(cal->curIndex)++;
+	
+	
+	return 0;
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+
+static int findIndexToInsert(calendar* cal , int start , int end){
+	int toRet = 0;
+	int i=0;
+	int flag=0;
+	
+	if(cal->curIndex == 0){
+		toRet = 0;
+	}else{
+		for(i=0;i<cal->curIndex;i++){
+			if(end <= cal->adr[i]->start ){
+				toRet = i;
+				flag=1;	
+				break;
+			} 	
+		}
+	}
+	
+	if(!flag){
+		toRet=cal->curIndex;
+	}
+
+	if(i>0){   /*check if overlap with the meeting before*/
+		if(start<cal->adr[i-1]->end){
+						toRet = -1;
+		} 
+	}
+
+	return toRet;
+}
+
+
+static void shiftR(calendar* cal , int indexToInsert){
+	int i;	
+	for(i=cal->curIndex;i>indexToInsert;i--){
+		cal->adr[i] = cal->adr[i-1];
+	}
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+
+
+int Remove(calendar* cal , int startHour){
+	int i=0;
+	int toReturn=-1;
+	while(i<cal->curIndex){
+		if(cal->adr[i]->start > startHour){  /*if next meeting is later then the meeting we search -> search meeting is not at calendar*/ 
+			return -1;		
+		}else if(cal->adr[i]->start == startHour){
+			free(cal->adr[i]);
+			while(i<cal->curIndex-1){
+				cal->adr[i] = cal->adr[i+1];
+				i++;		
+			}	
+			(cal->curIndex)--;		
+			toReturn=0;
+		}
+		i++;
+	}
+	return toReturn;
+}
+
+
+
+/*------------------------------------------------------------------------------------*/
+
+
+
+int Find(calendar cal , meeting* meet){   /*meet pointer is updated with subject */
+	int i=0;
+	int toReturn=-1;
+	while(i<cal.curIndex){
+		if(cal.adr[i]->start > meet->start){ /*if next meeting is later then the meeting we search -> search meeting is not at calendar*/ 
+			break;		
+		}else if(cal.adr[i]->start == meet->start){
+			strcpy(meet->subject,cal.adr[i]->subject);
+			meet->end = cal.adr[i]->end;
+			toReturn = 0;
+			break;		
+		}	
+		i++;
+	}
+	return toReturn;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+
+void freeAll(calendar* cal1){
+	int i = 0;
+	
+	if(cal1->curIndex == 0)
+		return;
+
+	for(i=0;i<cal1->curIndex;i++){
+		free(cal1->adr[i]);
+	}
+
+
+	free(cal1->adr);
+	cal1->curIndex = 0;	
+	
+}
+
+/*------------------------------------------------------------------------------------*/
+
+
+void printArr(calendar cal){
+	int i;	
+	for(i=0;i<cal.curIndex;i++){
+		printf("%d : subject=> %s, start=> %d,  end=> %d  \n",i,cal.adr[i]->subject,cal.adr[i]->start,cal.adr[i]->end);
+	}
+	printf("\n\n");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

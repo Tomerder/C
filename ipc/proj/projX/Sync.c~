@@ -1,0 +1,126 @@
+/*************************************************************/
+/** 	Project:	My Malloc.              				**/
+/** 	Author:		Tomer Dery								**/
+/** 	Created:	27/1/2112								**/
+/** 	Updated:	27/1/2112								**/
+/*************************************************************/
+#define _BSD_SOURCE 
+#define _POSIX_C_SOURCE 2
+#define _XOPEN_SOURCE 500
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+#include <limits.h>
+#include <pthread.h>
+#include <semaphore.h>
+
+/*--------------------------------------------------------------------*/
+
+#include "Sync.h"
+
+/*--------------------------------------------------------------------*/
+
+#define DUMMY_NUM 1
+
+enum{OK_E, ALOC_ERR , SEM_INIT_ERR , THREAD_JOIN_ERR};
+
+enum{ FALSE , TRUE };
+
+enum{NOT_SHAREABLE, SHAREABLE};
+
+#define GET_SYNC_OBJ(SYNC,NUM)  ( &(SYNC->m_syncObjs[NUM]) )
+#define GET_SEM(SYNC_OBJ)       ( SYNC_OBJ->m_syncObj )
+#define GET_TYPE(SYNC_OBJ)       ( SYNC_OBJ->m_type )
+
+/*--------------------------------------------------------------------*/
+
+struct SyncObj{
+	sem_t 		m_syncObj;
+	int 		m_type;
+	unsigned 	m_ownerPid;
+};		
+
+struct SyncObjs{
+	int 	  m_numOfSyncObjs;
+	SyncObj   m_syncObjs[DUMMY_NUM];
+};
+
+/*--------------------------------------------------------------------*/
+
+SyncObjs* SyncInit(char* _mem, int _numOfObjs)
+{
+	SyncObjs* syncObjs = (SyncObjs*)_mem;
+	
+	syncObjs->m_numOfSyncObjs = _numOfObjs;
+	
+	return syncObjs;
+}
+
+/*--------------------------------------------------------------------*/
+
+int ObjInit(SyncObjs* _syncObjs, int _numOfObj, int _type, int _val)
+{
+	int err;
+	SyncObj* syncObj = (SyncObj*) GET_SYNC_OBJ(_syncObjs, _numOfObj);
+
+	/*err = sem_init ( &(_syncObjs->m_syncObjs[_numOfObj].m_syncObj) , SHAREABLE, _val);*/
+
+	/*printf("numOfSems: %d\n", _syncObjs->m_numOfSyncObjs);*/
+
+	GET_TYPE(syncObj) = _type;	
+
+	err = sem_init( &GET_SEM(syncObj) , SHAREABLE, _val);
+    if(err){
+    	return SEM_INIT_ERR;
+    } 
+    
+    return OK_E;
+}
+
+/*--------------------------------------------------------------------*/
+
+int SyncObjsNeededSize(int _numOfObjs)
+{
+	int size = sizeof(SyncObjs) + (sizeof(SyncObj) * _numOfObjs);
+	
+	return size;
+}
+
+/*--------------------------------------------------------------------*/
+
+void SyncDestroy(SyncObjs* _syncObjs)
+{
+
+}
+
+/*--------------------------------------------------------------------*/
+
+int SyncObjOp(SyncObjs* _syncObjs, int _numOfObj , int _op)
+{
+	SyncObj* syncObj = (SyncObj*) GET_SYNC_OBJ(_syncObjs, _numOfObj);
+	
+	if(_op == DOWN){
+		sem_wait( &GET_SEM(syncObj)  ); 
+	}else if(_op == UP){
+		sem_post( &GET_SEM(syncObj) ); 
+	}
+	
+	return OK_E;
+}
+
+/*--------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+

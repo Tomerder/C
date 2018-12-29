@@ -1,0 +1,2 @@
+list.o: list.c list.h err.h
+listMain.o: listMain.c list.h err.h

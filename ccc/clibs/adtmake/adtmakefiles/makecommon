@@ -1,0 +1,18 @@
+CC = gcc
+cFLAGS = -ansi -pedantic -Wall
+
+$(EXE) : $(ME)
+	$(CC) $(cFLAGS) -g $(ME) $(OUT) -o $(EXE)
+
+$(ME): $(ME:.o=.c)
+	$(CC) $(cFLAGS) -c -g $(ME:.o=.c) -I../AINCLUDE 
+ 	
+ 	
+clean:
+	rm -f *.o *~ exe
+	
+
+
+
+
+

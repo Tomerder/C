@@ -1,0 +1,3001 @@
+==4046== Memcheck, a memory error detector
+==4046== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==4046== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==4046== Command: ./mem
+==4046== Parent PID: 3967
+==4046== 
+==4046== Warning: client switching stacks?  SP change: 0xbed82298 --> 0xbe8bd6a0
+==4046==          to suppress, use: --max-stackframe=5000184 or greater
+==4046== Invalid write of size 4
+==4046==    at 0x804882F: main (mem.c:42)
+==4046==  Address 0xbe8bd6dc is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048839: main (mem.c:42)
+==4046==  Address 0xbed8228c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048844: main (mem.c:43)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804884B: main (mem.c:44)
+==4046==  Address 0xbec8e000 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 1
+==4046==    at 0x8048856: main (mem.c:47)
+==4046==  Address 0xbec8e038 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804885E: main (mem.c:49)
+==4046==  Address 0xbec8e004 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048869: main (mem.c:51)
+==4046==  Address 0xbed8227a is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048874: main (mem.c:51)
+==4046==  Address 0xbed8227e is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804887F: main (mem.c:51)
+==4046==  Address 0xbed82282 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804888A: main (mem.c:51)
+==4046==  Address 0xbed82286 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 2
+==4046==    at 0x8048895: main (mem.c:51)
+==4046==  Address 0xbed8228a is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804889F: main (mem.c:52)
+==4046==  Address 0xbec8e03a is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488AA: main (mem.c:52)
+==4046==  Address 0xbec8e03e is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488B5: main (mem.c:52)
+==4046==  Address 0xbec8e042 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488C0: main (mem.c:52)
+==4046==  Address 0xbec8e046 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488CB: main (mem.c:52)
+==4046==  Address 0xbec8e04a is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488E2: main (mem.c:52)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488E6: main (mem.c:52)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488EE: main (mem.c:52)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402E884: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 1
+==4046==    at 0x402E888: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402E88C: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 1
+==4046==    at 0x402E8A5: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 1
+==4046==    at 0x402E8B4: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbec8e04e is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x402E8D3: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbec8e050 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 1
+==4046==    at 0x402E8EE: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 1
+==4046==    at 0x402E8F8: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbed82278 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402E902: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80488F5: main (mem.c:52)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80488F6: main (mem.c:63)
+==4046==  Address 0xbec8dff8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048908: main (mem.c:65)
+==4046==  Address 0xbec8dffc is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804890F: main (mem.c:66)
+==4046==  Address 0xbec8dfec is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804891A: main (mem.c:66)
+==4046==  Address 0xbec8dff0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804892E: main (mem.c:67)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048932: main (mem.c:67)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804893A: main (mem.c:67)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402E884: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048941: main (mem.c:67)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 1
+==4046==    at 0x402E888: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048941: main (mem.c:67)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402E88C: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048941: main (mem.c:67)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x402E8D3: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048941: main (mem.c:67)
+==4046==  Address 0xbe8bd6e0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402E902: memset (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048941: main (mem.c:67)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048942: main (mem.c:67)
+==4046==  Address 0xbe8bd6e0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804894A: main (mem.c:69)
+==4046==  Address 0xbec8e008 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048955: main (mem.c:70)
+==4046==  Address 0xbec8e00c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048960: main (mem.c:84)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402BE13: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x804896B: main (mem.c:84)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804896C: main (mem.c:84)
+==4046==  Address 0xbec8e010 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048973: main (mem.c:85)
+==4046==  Address 0xbec8e010 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048989: main (mem.c:86)
+==4046==  Address 0xbec8e010 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048996: main (mem.c:87)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80489A5: main (mem.c:87)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80489AC: main (mem.c:89)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402BE13: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x80489B7: main (mem.c:89)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80489B8: main (mem.c:89)
+==4046==  Address 0xbec8e014 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x80489BF: main (mem.c:90)
+==4046==  Address 0xbec8e010 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x80489D5: main (mem.c:91)
+==4046==  Address 0xbec8e014 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80489E2: main (mem.c:92)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80489F1: main (mem.c:92)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80489F8: main (mem.c:94)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402BE13: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048A03: main (mem.c:94)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048A04: main (mem.c:94)
+==4046==  Address 0xbec8e018 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048A0B: main (mem.c:95)
+==4046==  Address 0xbec8e018 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048A21: main (mem.c:96)
+==4046==  Address 0xbec8e018 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048A2B: main (mem.c:97)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048A36: main (mem.c:97)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048A3D: main (mem.c:99)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402BE13: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048A48: main (mem.c:99)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048A49: main (mem.c:99)
+==4046==  Address 0xbec8e01c is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048A50: main (mem.c:100)
+==4046==  Address 0xbec8e01c is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048A66: main (mem.c:101)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048A75: main (mem.c:101)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048A7C: main (mem.c:103)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402BE13: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048A87: main (mem.c:103)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048A88: main (mem.c:103)
+==4046==  Address 0xbec8e020 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048A8F: main (mem.c:104)
+==4046==  Address 0xbec8e020 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048AA5: main (mem.c:105)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048AB4: main (mem.c:105)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048ABB: main (mem.c:107)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402BE13: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048AC6: main (mem.c:107)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048AC7: main (mem.c:107)
+==4046==  Address 0xbec8e024 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048ACE: main (mem.c:108)
+==4046==  Address 0xbec8e024 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048AE4: main (mem.c:109)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048AF3: main (mem.c:109)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048AFA: main (mem.c:111)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402BE13: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048B05: main (mem.c:111)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Warning: set address range perms: large range [0xe7ac028, 0x26524428) (undefined)
+==4046== Invalid write of size 4
+==4046==    at 0x8048B06: main (mem.c:111)
+==4046==  Address 0xbec8e028 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048B0D: main (mem.c:112)
+==4046==  Address 0xbec8e024 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048B23: main (mem.c:113)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048B32: main (mem.c:113)
+==4046==  Address 0xbec8dfe0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048B39: main (mem.c:116)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD747: puts (ioputs.c:37)
+==4046==    by 0x405F4D2: (below main) (libc-start.c:226)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x8048B44: main (mem.c:116)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048B45: main (mem.c:117)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x8048B50: main (mem.c:117)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048B51: main (mem.c:118)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x8048B5C: main (mem.c:118)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048B5D: main (mem.c:119)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x8048B68: main (mem.c:119)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048B73: main (mem.c:121)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048B77: main (mem.c:121)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048B7B: main (mem.c:121)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== 
+==4046== More than 100 errors detected.  Subsequent errors
+==4046== will still be recorded, but in less detail than before.
+==4046== Invalid write of size 8
+==4046==    at 0x8048B7F: main (mem.c:121)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048B83: main (mem.c:121)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048B97: main (mem.c:121)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048B9B: main (mem.c:121)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048BA9: main (mem.c:121)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048BAD: main (mem.c:121)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048BB1: main (mem.c:121)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048BB9: main (mem.c:121)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x4092EE7: printf (printf.c:35)
+==4046==    by 0x405F4D2: (below main) (libc-start.c:226)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x408C970: vfprintf (vfprintf.c:1630)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x405F4D2: (below main) (libc-start.c:226)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x408DDD9: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x405F4D2: (below main) (libc-start.c:226)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x408E01F: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x405F4D2: (below main) (libc-start.c:226)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048BCB: main (mem.c:122)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048BCF: main (mem.c:122)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048BD3: main (mem.c:122)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048BD7: main (mem.c:122)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048BDB: main (mem.c:122)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048BEF: main (mem.c:122)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048BF3: main (mem.c:122)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048C01: main (mem.c:122)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C05: main (mem.c:122)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C09: main (mem.c:122)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C11: main (mem.c:122)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C23: main (mem.c:123)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C27: main (mem.c:123)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048C2B: main (mem.c:123)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048C2F: main (mem.c:123)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048C33: main (mem.c:123)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048C47: main (mem.c:123)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048C4B: main (mem.c:123)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048C59: main (mem.c:123)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C5D: main (mem.c:123)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C61: main (mem.c:123)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C69: main (mem.c:123)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C7B: main (mem.c:125)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048C7F: main (mem.c:125)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048C83: main (mem.c:125)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048C87: main (mem.c:125)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048C8B: main (mem.c:125)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048C9F: main (mem.c:125)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048CA3: main (mem.c:125)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048CB1: main (mem.c:125)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048CB5: main (mem.c:125)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048CB9: main (mem.c:125)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048CC1: main (mem.c:125)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048CD3: main (mem.c:126)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048CD7: main (mem.c:126)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048CDB: main (mem.c:126)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048CDF: main (mem.c:126)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048CE3: main (mem.c:126)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048CF7: main (mem.c:126)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048CFB: main (mem.c:126)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048D09: main (mem.c:126)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D0D: main (mem.c:126)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D11: main (mem.c:126)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D19: main (mem.c:126)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D2B: main (mem.c:127)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D2F: main (mem.c:127)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048D33: main (mem.c:127)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048D37: main (mem.c:127)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048D3B: main (mem.c:127)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048D4F: main (mem.c:127)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048D53: main (mem.c:127)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048D61: main (mem.c:127)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D65: main (mem.c:127)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D69: main (mem.c:127)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D71: main (mem.c:127)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D83: main (mem.c:128)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048D87: main (mem.c:128)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048D8B: main (mem.c:128)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048D8F: main (mem.c:128)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048D93: main (mem.c:128)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048DA7: main (mem.c:128)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048DAB: main (mem.c:128)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048DB9: main (mem.c:128)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048DBD: main (mem.c:128)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048DC1: main (mem.c:128)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048DC9: main (mem.c:128)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048DDB: main (mem.c:129)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048DDF: main (mem.c:129)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048DE3: main (mem.c:129)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048DE7: main (mem.c:129)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048DEB: main (mem.c:129)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048DFF: main (mem.c:129)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048E03: main (mem.c:129)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048E11: main (mem.c:129)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E15: main (mem.c:129)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E19: main (mem.c:129)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E21: main (mem.c:129)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048E29: main (mem.c:130)
+==4046==  Address 0xbec8e004 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E35: main (mem.c:130)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E39: main (mem.c:130)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048E3D: main (mem.c:130)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048E41: main (mem.c:130)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048E45: main (mem.c:130)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048E59: main (mem.c:130)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048E5D: main (mem.c:130)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048E61: main (mem.c:130)
+==4046==  Address 0xbec8e004 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048E6D: main (mem.c:130)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E71: main (mem.c:130)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E75: main (mem.c:130)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E7D: main (mem.c:130)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E8F: main (mem.c:131)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048E93: main (mem.c:131)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048E97: main (mem.c:131)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048E9B: main (mem.c:131)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048E9F: main (mem.c:131)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048EB3: main (mem.c:131)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048EB7: main (mem.c:131)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048EC7: main (mem.c:131)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048ECB: main (mem.c:131)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048ECF: main (mem.c:131)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048ED7: main (mem.c:131)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048EE9: main (mem.c:132)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048EED: main (mem.c:132)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048EF1: main (mem.c:132)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048EF5: main (mem.c:132)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048EF9: main (mem.c:132)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048F0D: main (mem.c:132)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048F11: main (mem.c:132)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048F21: main (mem.c:132)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F25: main (mem.c:132)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F29: main (mem.c:132)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F31: main (mem.c:132)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F43: main (mem.c:133)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F47: main (mem.c:133)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048F4B: main (mem.c:133)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048F4F: main (mem.c:133)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048F53: main (mem.c:133)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048F67: main (mem.c:133)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048F6B: main (mem.c:133)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048F7B: main (mem.c:133)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F7F: main (mem.c:133)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F83: main (mem.c:133)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F8B: main (mem.c:133)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048F93: main (mem.c:134)
+==4046==  Address 0xbec8e008 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048F9F: main (mem.c:134)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048FA3: main (mem.c:134)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048FA7: main (mem.c:134)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048FAB: main (mem.c:134)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048FAF: main (mem.c:134)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048FC3: main (mem.c:134)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8048FC7: main (mem.c:134)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048FCB: main (mem.c:134)
+==4046==  Address 0xbec8e008 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8048FD7: main (mem.c:134)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048FDB: main (mem.c:134)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048FDF: main (mem.c:134)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048FE7: main (mem.c:134)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8048FEF: main (mem.c:135)
+==4046==  Address 0xbec8e02c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048FFB: main (mem.c:135)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8048FFF: main (mem.c:135)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049003: main (mem.c:135)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049007: main (mem.c:135)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804900B: main (mem.c:135)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804901F: main (mem.c:135)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049023: main (mem.c:135)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049027: main (mem.c:135)
+==4046==  Address 0xbec8e02c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049033: main (mem.c:135)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049037: main (mem.c:135)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804903B: main (mem.c:135)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049043: main (mem.c:135)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x804904B: main (mem.c:136)
+==4046==  Address 0xbec8e00c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049057: main (mem.c:136)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804905B: main (mem.c:136)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804905F: main (mem.c:136)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049063: main (mem.c:136)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049067: main (mem.c:136)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804907B: main (mem.c:136)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804907F: main (mem.c:136)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049083: main (mem.c:136)
+==4046==  Address 0xbec8e00c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804908F: main (mem.c:136)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049093: main (mem.c:136)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049097: main (mem.c:136)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804909F: main (mem.c:136)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80490A7: main (mem.c:138)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80490B2: main (mem.c:138)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80490B3: main (mem.c:139)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80490BE: main (mem.c:139)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80490BF: main (mem.c:140)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80490CA: main (mem.c:140)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80490CB: main (mem.c:141)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80490D6: main (mem.c:141)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80490E1: main (mem.c:143)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80490E5: main (mem.c:143)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80490E9: main (mem.c:143)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80490ED: main (mem.c:143)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80490F1: main (mem.c:143)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049105: main (mem.c:143)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049109: main (mem.c:143)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049117: main (mem.c:143)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804911B: main (mem.c:143)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804911F: main (mem.c:143)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049127: main (mem.c:143)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049139: main (mem.c:144)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804913D: main (mem.c:144)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049141: main (mem.c:144)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049145: main (mem.c:144)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049149: main (mem.c:144)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804915D: main (mem.c:144)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049161: main (mem.c:144)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804916F: main (mem.c:144)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049173: main (mem.c:144)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049177: main (mem.c:144)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804917F: main (mem.c:144)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049191: main (mem.c:145)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049195: main (mem.c:145)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049199: main (mem.c:145)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804919D: main (mem.c:145)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80491A1: main (mem.c:145)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80491B5: main (mem.c:145)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80491B9: main (mem.c:145)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80491C7: main (mem.c:145)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80491CB: main (mem.c:145)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80491CF: main (mem.c:145)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80491D7: main (mem.c:145)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80491E9: main (mem.c:146)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80491ED: main (mem.c:146)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80491F1: main (mem.c:146)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80491F5: main (mem.c:146)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80491F9: main (mem.c:146)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804920D: main (mem.c:146)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049211: main (mem.c:146)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804921F: main (mem.c:146)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049223: main (mem.c:146)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049227: main (mem.c:146)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804922F: main (mem.c:146)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049241: main (mem.c:149)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049245: main (mem.c:149)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049249: main (mem.c:149)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804924D: main (mem.c:149)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049251: main (mem.c:149)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049265: main (mem.c:149)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049269: main (mem.c:149)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049277: main (mem.c:149)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804927B: main (mem.c:149)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804927F: main (mem.c:149)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049287: main (mem.c:149)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049299: main (mem.c:150)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804929D: main (mem.c:150)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80492A1: main (mem.c:150)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80492A5: main (mem.c:150)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80492A9: main (mem.c:150)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80492BD: main (mem.c:150)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80492C1: main (mem.c:150)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80492CF: main (mem.c:150)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80492D3: main (mem.c:150)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80492D7: main (mem.c:150)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80492DF: main (mem.c:150)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80492F1: main (mem.c:151)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80492F5: main (mem.c:151)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80492F9: main (mem.c:151)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80492FD: main (mem.c:151)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049301: main (mem.c:151)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049315: main (mem.c:151)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049319: main (mem.c:151)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049327: main (mem.c:151)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804932B: main (mem.c:151)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804932F: main (mem.c:151)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049337: main (mem.c:151)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049349: main (mem.c:153)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804934D: main (mem.c:153)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049351: main (mem.c:153)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049355: main (mem.c:153)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049359: main (mem.c:153)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804936D: main (mem.c:153)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049371: main (mem.c:153)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049381: main (mem.c:153)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049385: main (mem.c:153)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049389: main (mem.c:153)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049391: main (mem.c:153)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80493A3: main (mem.c:154)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80493A7: main (mem.c:154)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80493AB: main (mem.c:154)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80493AF: main (mem.c:154)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80493B3: main (mem.c:154)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80493C7: main (mem.c:154)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80493CB: main (mem.c:154)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80493D9: main (mem.c:154)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80493DD: main (mem.c:154)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80493E1: main (mem.c:154)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80493E9: main (mem.c:154)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80493FB: main (mem.c:155)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80493FF: main (mem.c:155)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049403: main (mem.c:155)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049407: main (mem.c:155)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804940B: main (mem.c:155)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804941F: main (mem.c:155)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049423: main (mem.c:155)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049431: main (mem.c:155)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049435: main (mem.c:155)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049439: main (mem.c:155)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049441: main (mem.c:155)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049453: main (mem.c:156)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049457: main (mem.c:156)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804945B: main (mem.c:156)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804945F: main (mem.c:156)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049463: main (mem.c:156)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049477: main (mem.c:156)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804947B: main (mem.c:156)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049489: main (mem.c:156)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804948D: main (mem.c:156)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049491: main (mem.c:156)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049499: main (mem.c:156)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80494A1: main (mem.c:159)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80494AC: main (mem.c:159)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80494AD: main (mem.c:160)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80494B8: main (mem.c:160)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80494B9: main (mem.c:161)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80494C4: main (mem.c:161)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80494C5: main (mem.c:162)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x80494D0: main (mem.c:162)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x80494D1: main (mem.c:167)
+==4046==  Address 0xbec8e010 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80494DD: main (mem.c:167)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80494E1: main (mem.c:167)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80494E5: main (mem.c:167)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80494E9: main (mem.c:167)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80494ED: main (mem.c:167)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049501: main (mem.c:167)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049505: main (mem.c:167)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049509: main (mem.c:167)
+==4046==  Address 0xbec8e010 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049515: main (mem.c:167)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049519: main (mem.c:167)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804951D: main (mem.c:167)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049525: main (mem.c:167)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x804952D: main (mem.c:173)
+==4046==  Address 0xbec8e014 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049539: main (mem.c:173)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804953D: main (mem.c:173)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049541: main (mem.c:173)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049545: main (mem.c:173)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049549: main (mem.c:173)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804955D: main (mem.c:173)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049561: main (mem.c:173)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049565: main (mem.c:173)
+==4046==  Address 0xbec8e014 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049571: main (mem.c:173)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049575: main (mem.c:173)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049579: main (mem.c:173)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049581: main (mem.c:173)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049589: main (mem.c:178)
+==4046==  Address 0xbec8e018 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049595: main (mem.c:178)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049599: main (mem.c:178)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804959D: main (mem.c:178)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80495A1: main (mem.c:178)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80495A5: main (mem.c:178)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80495B9: main (mem.c:178)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80495BD: main (mem.c:178)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x80495C1: main (mem.c:178)
+==4046==  Address 0xbec8e018 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80495CD: main (mem.c:178)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80495D1: main (mem.c:178)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80495D5: main (mem.c:178)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80495DD: main (mem.c:178)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x80495E5: main (mem.c:180)
+==4046==  Address 0xbec8e01c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80495F1: main (mem.c:180)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80495F5: main (mem.c:180)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80495F9: main (mem.c:180)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80495FD: main (mem.c:180)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049601: main (mem.c:180)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049615: main (mem.c:180)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049619: main (mem.c:180)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x804961D: main (mem.c:180)
+==4046==  Address 0xbec8e01c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049629: main (mem.c:180)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804962D: main (mem.c:180)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049631: main (mem.c:180)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049639: main (mem.c:180)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049641: main (mem.c:181)
+==4046==  Address 0xbec8e020 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804964D: main (mem.c:181)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049651: main (mem.c:181)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049655: main (mem.c:181)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049659: main (mem.c:181)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804965D: main (mem.c:181)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049671: main (mem.c:181)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049675: main (mem.c:181)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049679: main (mem.c:181)
+==4046==  Address 0xbec8e020 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049685: main (mem.c:181)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049689: main (mem.c:181)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804968D: main (mem.c:181)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049695: main (mem.c:181)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x804969D: main (mem.c:183)
+==4046==  Address 0xbec8e024 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80496A9: main (mem.c:183)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80496AD: main (mem.c:183)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80496B1: main (mem.c:183)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80496B5: main (mem.c:183)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80496B9: main (mem.c:183)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80496CD: main (mem.c:183)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80496D1: main (mem.c:183)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x80496D5: main (mem.c:183)
+==4046==  Address 0xbec8e024 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80496E1: main (mem.c:183)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80496E5: main (mem.c:183)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80496E9: main (mem.c:183)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80496F1: main (mem.c:183)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x80496F9: main (mem.c:184)
+==4046==  Address 0xbec8e028 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049705: main (mem.c:184)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049709: main (mem.c:184)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804970D: main (mem.c:184)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049711: main (mem.c:184)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049715: main (mem.c:184)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049729: main (mem.c:184)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804972D: main (mem.c:184)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049731: main (mem.c:184)
+==4046==  Address 0xbec8e028 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804973D: main (mem.c:184)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049741: main (mem.c:184)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049745: main (mem.c:184)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804974D: main (mem.c:184)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049755: main (mem.c:202)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x8049760: main (mem.c:202)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049761: main (mem.c:203)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x804976C: main (mem.c:203)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804976D: main (mem.c:204)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x8049778: main (mem.c:204)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049779: main (mem.c:205)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AD7F4: puts (ioputs.c:42)
+==4046==    by 0x8049784: main (mem.c:205)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049791: main (mem.c:207)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049795: main (mem.c:207)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049799: main (mem.c:207)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804979D: main (mem.c:207)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80497A1: main (mem.c:207)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80497B5: main (mem.c:207)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80497B9: main (mem.c:207)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80497C9: main (mem.c:207)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80497CD: main (mem.c:207)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80497D1: main (mem.c:207)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80497D9: main (mem.c:207)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80497ED: main (mem.c:208)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80497F1: main (mem.c:208)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80497F5: main (mem.c:208)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80497F9: main (mem.c:208)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80497FD: main (mem.c:208)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049811: main (mem.c:208)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049815: main (mem.c:208)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049825: main (mem.c:208)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049829: main (mem.c:208)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804982D: main (mem.c:208)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049835: main (mem.c:208)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x804983D: main (mem.c:210)
+==4046==  Address 0xbec8e030 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049849: main (mem.c:210)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804984D: main (mem.c:210)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049851: main (mem.c:210)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049855: main (mem.c:210)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049859: main (mem.c:210)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804986D: main (mem.c:210)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049871: main (mem.c:210)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049875: main (mem.c:210)
+==4046==  Address 0xbec8e030 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049881: main (mem.c:210)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049885: main (mem.c:210)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049889: main (mem.c:210)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049891: main (mem.c:210)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80498A5: main (mem.c:211)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80498A9: main (mem.c:211)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80498AD: main (mem.c:211)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80498B1: main (mem.c:211)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80498B5: main (mem.c:211)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80498C9: main (mem.c:211)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80498CD: main (mem.c:211)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80498DD: main (mem.c:211)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80498E1: main (mem.c:211)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80498E5: main (mem.c:211)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80498ED: main (mem.c:211)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049901: main (mem.c:212)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049905: main (mem.c:212)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049909: main (mem.c:212)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x804990D: main (mem.c:212)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049911: main (mem.c:212)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049925: main (mem.c:212)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049929: main (mem.c:212)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049939: main (mem.c:212)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804993D: main (mem.c:212)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049941: main (mem.c:212)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049949: main (mem.c:212)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804995D: main (mem.c:214)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049961: main (mem.c:214)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049965: main (mem.c:214)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049969: main (mem.c:214)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x804996D: main (mem.c:214)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049981: main (mem.c:214)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049985: main (mem.c:214)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049995: main (mem.c:214)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049999: main (mem.c:214)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x804999D: main (mem.c:214)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80499A5: main (mem.c:214)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80499B9: main (mem.c:215)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80499BD: main (mem.c:215)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80499C1: main (mem.c:215)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80499C5: main (mem.c:215)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80499C9: main (mem.c:215)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80499DD: main (mem.c:215)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x80499E1: main (mem.c:215)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x80499F1: main (mem.c:215)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80499F5: main (mem.c:215)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x80499F9: main (mem.c:215)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A01: main (mem.c:215)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049A09: main (mem.c:217)
+==4046==  Address 0xbec8e034 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A15: main (mem.c:217)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A19: main (mem.c:217)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049A1D: main (mem.c:217)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049A21: main (mem.c:217)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049A25: main (mem.c:217)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049A39: main (mem.c:217)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049A3D: main (mem.c:217)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049A41: main (mem.c:217)
+==4046==  Address 0xbec8e034 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049A4D: main (mem.c:217)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A51: main (mem.c:217)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A55: main (mem.c:217)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A5D: main (mem.c:217)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049A65: main (mem.c:218)
+==4046==  Address 0xbec8dffc is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A71: main (mem.c:218)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049A75: main (mem.c:218)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049A79: main (mem.c:218)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049A7D: main (mem.c:218)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049A81: main (mem.c:218)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049A95: main (mem.c:218)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049A99: main (mem.c:218)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049A9D: main (mem.c:218)
+==4046==  Address 0xbec8dffc is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049AAB: main (mem.c:218)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049AAF: main (mem.c:218)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049AB3: main (mem.c:218)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049ABB: main (mem.c:218)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049ACF: main (mem.c:219)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049AD3: main (mem.c:219)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049AD7: main (mem.c:219)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049ADB: main (mem.c:219)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049ADF: main (mem.c:219)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049AF3: main (mem.c:219)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049AF7: main (mem.c:219)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049B07: main (mem.c:219)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B0B: main (mem.c:219)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B0F: main (mem.c:219)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B17: main (mem.c:219)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B2B: main (mem.c:220)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B2F: main (mem.c:220)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049B33: main (mem.c:220)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049B37: main (mem.c:220)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049B3B: main (mem.c:220)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049B4F: main (mem.c:220)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049B53: main (mem.c:220)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049B63: main (mem.c:220)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B67: main (mem.c:220)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B6B: main (mem.c:220)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B73: main (mem.c:220)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B84: main (mem.c:221)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049B88: main (mem.c:221)
+==4046==  Address 0xbe8bd6cc is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049B8C: main (mem.c:221)
+==4046==  Address 0xbe8bd6c8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049B90: main (mem.c:221)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049B94: main (mem.c:221)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049BA8: main (mem.c:221)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 8
+==4046==    at 0x8049BAC: main (mem.c:221)
+==4046==  Address 0xbe8bd6d0 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 8
+==4046==    at 0x8049BB9: main (mem.c:221)
+==4046==  Address 0xbe8bd6ac is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049BBD: main (mem.c:221)
+==4046==  Address 0xbe8bd6a8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049BC1: main (mem.c:221)
+==4046==  Address 0xbe8bd6a4 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049BC9: main (mem.c:221)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049BD1: main (mem.c:223)
+==4046==  Address 0xbec8dff8 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049BD8: main (mem.c:223)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049E17: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x4088468: _itoa_word (_itoa.c:196)
+==4046==    by 0x408C5EA: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x4088473: _itoa_word (_itoa.c:196)
+==4046==    by 0x408C5EA: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408E610: __printf_fp (printf_fp.c:406)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408E78E: __printf_fp (printf_fp.c:421)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x407731F: __mpn_extract_double (dbl2mpn.c:57)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408EA62: __printf_fp (printf_fp.c:490)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408EF2A: __printf_fp (printf_fp.c:661)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x408EF36: __printf_fp (printf_fp.c:828)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x40761F0: __mpn_lshift (lshift.S:76)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x40761F8: __mpn_lshift (lshift.S:81)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x408EF52: __printf_fp (printf_fp.c:829)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x408E429: hack_digit.12670 (printf_fp.c:243)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x4076660: __mpn_mul_1 (mul_1.S:70)
+==4046==    by 0x408E445: hack_digit.12670 (printf_fp.c:244)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Use of uninitialised value of size 4
+==4046==    at 0x4076667: __mpn_mul_1 (mul_1.S:73)
+==4046==    by 0x408E445: hack_digit.12670 (printf_fp.c:244)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408F1B5: __printf_fp (printf_fp.c:970)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408F204: __printf_fp (printf_fp.c:982)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408F3EE: __printf_fp (printf_fp.c:1173)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408F4A1: __printf_fp (printf_fp.c:1180)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408F620: __printf_fp (printf_fp.c:1234)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408F606: __printf_fp (printf_fp.c:1236)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x40B8387: _IO_file_overflow@@GLIBC_2.1 (fileops.c:893)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x40B83AE: _IO_file_overflow@@GLIBC_2.1 (fileops.c:901)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Conditional jump or move depends on uninitialised value(s)
+==4046==    at 0x408FC11: __printf_fp (printf_fp.c:1260)
+==4046==    by 0x408DFA8: vfprintf (vfprintf.c:1629)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046== 
+==4046== Syscall param write(buf) points to uninitialised byte(s)
+==4046==    at 0x41252B3: __write_nocancel (syscall-template.S:82)
+==4046==    by 0x40B6BA4: _IO_file_write@@GLIBC_2.1 (fileops.c:1289)
+==4046==    by 0x40B6A83: new_do_write (fileops.c:543)
+==4046==    by 0x40B80FD: _IO_do_write@@GLIBC_2.1 (fileops.c:516)
+==4046==    by 0x40B84B4: _IO_file_overflow@@GLIBC_2.1 (fileops.c:894)
+==4046==    by 0x40B7642: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1371)
+==4046==    by 0x40892BD: vfprintf (vfprintf.c:1660)
+==4046==    by 0x4092EFE: printf (printf.c:35)
+==4046==    by 0x804A0B2: func3 (mem.c:287)
+==4046==    by 0x8049F7D: func2 (mem.c:269)
+==4046==    by 0x8049E28: func1 (mem.c:256)
+==4046==    by 0x8049BDF: main (mem.c:223)
+==4046==  Address 0x4034022 is not stack'd, malloc'd or (recently) free'd
+==4046== 
+==4046== Warning: set address range perms: large range [0x38e5b028, 0x50bd3428) (undefined)
+==4046== Warning: set address range perms: large range [0x38e5b018, 0x50bd3438) (noaccess)
+==4046== Invalid read of size 4
+==4046==    at 0x8049BE0: main (mem.c:225)
+==4046==  Address 0xbec8e010 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049BE7: main (mem.c:225)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402B017: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8049BEE: main (mem.c:225)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049BEF: main (mem.c:226)
+==4046==  Address 0xbec8e014 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049BF6: main (mem.c:226)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402B017: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8049BFD: main (mem.c:226)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049BFE: main (mem.c:227)
+==4046==  Address 0xbec8e01c is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049C05: main (mem.c:227)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402B017: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8049C0C: main (mem.c:227)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049C0D: main (mem.c:228)
+==4046==  Address 0xbec8e020 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049C14: main (mem.c:228)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402B017: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8049C1B: main (mem.c:228)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049C1C: main (mem.c:229)
+==4046==  Address 0xbec8e024 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049C23: main (mem.c:229)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402B017: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8049C2A: main (mem.c:229)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049C2B: main (mem.c:230)
+==4046==  Address 0xbec8e028 is on thread 1's stack
+==4046== 
+==4046== Invalid write of size 4
+==4046==    at 0x8049C32: main (mem.c:230)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x402B017: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8049C39: main (mem.c:230)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Warning: set address range perms: large range [0xe7ac018, 0x26524438) (noaccess)
+==4046== Invalid write of size 4
+==4046==    at 0x8049C3A: main (mem.c:232)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x40AE6FA: putchar (putchar.c:27)
+==4046==    by 0x405F4D2: (below main) (libc-start.c:226)
+==4046==  Address 0xbe8bd6a0 is on thread 1's stack
+==4046== 
+==4046== Invalid read of size 4
+==4046==    at 0x8049C4B: main (mem.c:235)
+==4046==  Address 0xbed8228c is on thread 1's stack
+==4046== 
+==4046== Warning: client switching stacks?  SP change: 0xbe8bd6a0 --> 0xbed82298
+==4046==          to suppress, use: --max-stackframe=5000184 or greater
+==4046== 
+==4046== HEAP SUMMARY:
+==4046==     in use at exit: 1 bytes in 1 blocks
+==4046==   total heap usage: 8 allocs, 7 frees, 900,000,809 bytes allocated
+==4046== 
+==4046== 1 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==4046==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==4046==    by 0x8048A03: main (mem.c:94)
+==4046== 
+==4046== LEAK SUMMARY:
+==4046==    definitely lost: 1 bytes in 1 blocks
+==4046==    indirectly lost: 0 bytes in 0 blocks
+==4046==      possibly lost: 0 bytes in 0 blocks
+==4046==    still reachable: 0 bytes in 0 blocks
+==4046==         suppressed: 0 bytes in 0 blocks
+==4046== 
+==4046== For counts of detected and suppressed errors, rerun with: -v
+==4046== Use --track-origins=yes to see where uninitialised values come from
+==4046== ERROR SUMMARY: 1250966 errors from 697 contexts (suppressed: 0 from 0)

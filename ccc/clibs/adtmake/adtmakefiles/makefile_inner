@@ -1,0 +1,9 @@
+EXE = exe -lm
+ME = genericList.o mainGenericList.o
+OUT= ../ALIB/ADTErr.o
+
+include ../makecommon
+
+commit:
+	mv genericList.o ../ALIB/genericList.o
+

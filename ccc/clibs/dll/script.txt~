@@ -1,0 +1,18 @@
+gcc -c main.c
+gcc -c count.c
+
+#creating shared object
+gcc -shared -o count.so count.o
+
+#creating executable
+gcc main.o count.so -o sharedExe
+
+#set default dll library to 1 & execute
+export LD_LIBRARY_PATH=./1
+./sharedExe
+
+#set default dll library to 2 & execute
+export LD_LIBRARY_PATH=./2
+./sharedExe
+
+

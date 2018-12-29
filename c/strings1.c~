@@ -1,0 +1,334 @@
+#include<stdio.h>
+#include <math.h>
+
+void enterBetweenWord();
+
+void decBinApi();
+int static binarToDec(int num);
+int static decToBin(int num);
+
+void bigIntsApi();
+char*  bigInts(char* num1,char* num2);  /*static - compile error*/
+
+void squeezeApi();
+char* squeeze(char* s1,char* s2);  /*static - compile error*/
+
+void anyApi();
+int static any(char* str1,char* str2);
+
+char* reverseStr(char* str);    /*static - compile error*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{	
+	
+
+
+	int cont = 1;			
+	unsigned int option;
+	
+	while (cont) {
+		printf("Choose option: \n");
+		printf("1: enterBetweenWord  \n");
+		printf("2: DecBin    \n");
+		printf("3: BigInts  \n");
+        printf("4: Squeeze  \n");
+		printf("5: Any  \n");
+		printf("Any another number - stop \n");
+
+		scanf("%d", &option);
+		switch (option) {
+			case 1:
+				enterBetweenWord();	break;
+			case 2:
+				decBinApi();		break;
+			case 3:
+				bigIntsApi();	break;
+			case 4:
+				squeezeApi();	break;
+			case 5:
+				anyApi();	break;
+
+			default: cont = 0;	break;
+		}
+	}
+	
+
+	return 0;
+}
+
+
+/*-----------------------------------------------------11111111111111111---------------------------------------------*/
+
+void enterBetweenWord(){
+	
+	char str[500];
+	int len; 
+	int i = 0;
+	char c;
+
+	printf("Enter a sentence : ");
+	
+	c=getchar();
+	while((c=getchar())!='\n'){
+		if(c==' ')
+			str[i]='\n';	
+		else	
+			str[i]=c;
+		i++;
+	} 
+	str[i]='\0';
+	
+	printf("%s\n\n",&str);
+
+}
+
+/*----------------------decBin-------------------------------22222222222222222---------------------------------------------*/
+
+void decBinApi(){
+	int num=0;	
+	char c;	
+	int cont=1;
+
+	while(cont){
+		printf("Enter a number : ");
+		scanf("%d",&num);
+		if(num<0)
+			cont=0;
+		else{
+			printf("press 'b' if you wish to convert from decimal to binary and any other key for converting binary to decimal : ");	
+			
+			fflush(stdout);	
+			while(c=getchar()!='\n');
+			
+
+			if(c=getchar()=='b')
+				printf("%d\n\n",decToBin(num));
+			else 
+				printf("%d\n\n",binarToDec(num));				
+		}
+	}
+
+}
+
+
+int static binarToDec(int binarNum){
+	int num=0;
+	int i=0;
+	int mul=0;
+
+	while(binarNum>0)
+	{
+		mul = pow(2,i);
+		num+=(binarNum%10)*mul;
+		binarNum = binarNum/10;
+		i++;
+	} 
+	
+	return num;
+	
+}
+
+
+
+
+int static decToBin(int num){
+	char bit;
+	int i=0;
+	char *resultStr = (char*)malloc(32*sizeof(char));	
+	char resultStr2[32];	
+
+	while(num>0){
+		bit=(num % 2)+'0';
+		num = num/2;	
+		resultStr[i]=bit;	
+		i++;
+	}
+	resultStr[i]='\0';
+	
+	resultStr=reverseStr(resultStr);
+
+	strcpy(resultStr2,resultStr);
+	free(resultStr);
+
+	return atoi(resultStr2);
+}
+
+
+
+char* reverseStr(char* str){
+	int i=0;
+	char c;	
+	int len = strlen(str) - 1;
+
+	while(i <= len/2){
+		c=str[len-i];
+		str[len-i] = str[i];
+		str[i] = c;
+		i++;
+	}
+
+	return str;
+}
+
+/*---------------------BigInt--------------------------------333333333333---------------------------------------------*/
+
+void bigIntsApi(){
+	
+	char num1[500];
+	char num2[500];
+	
+	
+	printf("Enter first number : ");
+	scanf("%s",&num1);
+	printf("Enter second number : ");
+	scanf("%s",&num2);
+
+	printf("%s\n\n",bigInts(num1,num2));
+
+}
+
+
+char* bigInts(char* num1 , char* num2){
+
+	int len1,len2,min,max,first;
+	int i=0;
+	char* res = (char*)malloc(500*sizeof(char));
+	char res2[500]; 
+	int sum;
+	int plus=0;
+	char c;
+
+	len1 = strlen(num1);
+	len2 = strlen(num2);
+	
+	min = (len1>len2)?(len2):(len1);
+	max = (len1>len2)?(len1):(len2);
+	/*printf("min : %d  \n",min);*/	
+
+	while(i<min){
+		sum = (num1[len1-i-1]-'0') + (num2[len2-i-1]-'0') + plus; 
+			
+		if(sum>9){
+			first = sum - 10;
+			plus = 1;
+		}else{
+			first = sum;
+			plus = 0;
+		}
+		
+		c=first+'0';
+	
+		res[i]= c;
+		i++;
+	}
+	
+	while(i<max){
+		if(len1>len2)
+			res[i]=num1[i];
+		else
+			res[i]=num2[i];
+		i++;
+	} 
+
+	res[i] = '\0';
+	
+	res = reverseStr(res);
+	
+	strcpy(res2,res);
+	free(res);
+
+	return res2;	
+}
+
+/*-----------------------------------------------------4444444444444---------------------------------------------*/
+
+
+void squeezeApi(){
+	char num1[500];
+	char num2[500];
+	
+	
+	printf("Enter first word : ");
+	scanf("%s",&num1);
+	printf("Enter second word : ");
+	scanf("%s",&num2);
+
+	squeeze(num1,num2);
+	/**/	
+
+}
+
+
+char* squeeze(char* s1,char* s2){
+	int i=0,j=0;	
+	int hashTable[256] = {0};	
+	char res[500];	
+		
+	while(s2[i]!='\0'){
+		hashTable[(s2[i])] = 1;
+		i++;
+	}
+	
+	i=0;
+	while(s1[i]!='\0'){
+		if(hashTable[(s1[i])] != 1){
+			res[j] = s1[i]; 	
+			j++;
+		}	
+		i++;
+	}
+	
+	res[j] = '\0';		
+	
+	printf("%s\n\n",&res);	
+	return res;
+
+} 
+
+
+/*-----------------------------------------------------555555555555555---------------------------------------------*/
+
+void anyApi(){
+	
+	char str1[500];
+	char str2[500];
+	
+	
+	printf("Enter first word : ");
+	scanf("%s",&str1);
+	printf("Enter second word : ");
+	scanf("%s",&str2);
+
+	printf("index is: %d\n\n",any(str1,str2));	
+
+}
+
+
+
+int static any(char* str1,char* str2){
+	int i=0,j=0;
+	int toRet = -1;	
+	
+	while(str1[i] != '\0'){
+		for(j=0;str2[j]!='\0';j++){
+			if(str1[i+j] != str2[j]){
+				break;			
+			}
+		}
+		if(str2[j] == '\0'){
+			toRet = i;
+			break;
+		}
+		i++;
+	}
+	
+	return toRet;
+}
+
+
+
+
+
+

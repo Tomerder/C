@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include "queue.h"
+
+
+#define DECREASE_FACTOR 2
+
+struct Queue{
+	Item*  m_data;
+	size_t m_size;
+	size_t m_head;
+	size_t m_tail;
+	size_t m_nItems;  /*for knowing if queue is empty or full*/
+};
+
+
+
+/*------------------------------------------------------------------------------------*/
+
+Queue* QueueCreate (size_t _size){
+	Queue* queue;
+	
+	if(_size == 0){
+			return NULL;     /*not legal size 0*/
+	}
+
+	queue = (Queue*)malloc(sizeof(Queue));    /*malloc : Queue*/
+	if (queue == NULL){
+		return NULL;
+	}	
+
+		
+	queue->m_data = (Item*)malloc (sizeof(Item) * _size);   /*  malloc : Item*   */
+		if (queue->m_data == NULL){
+			free(queue);
+			return NULL;
+		}
+
+
+	queue->m_size = _size;	
+	queue->m_head = 0;
+	queue->m_tail = 0;
+	queue->m_nItems = 0;
+
+	return queue;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+
+void QueueDestroy (Queue* _queue){
+	assert(_queue);
+
+	free(_queue -> m_data);
+	free(_queue);
+}
+
+/*------------------------------------------------------------------------------------*/
+
+ADTERR QueueInsert (Queue* _queue, Item _item){
+	assert(_queue);
+	
+	/*check if queue is full*/
+	if(_queue->m_nItems == _queue->m_size){
+		return OVERFLOW;
+	}
+
+
+	 /*insert*/
+	_queue->m_data [_queue->m_tail] = _item;  
+	_queue->m_tail = (_queue->m_tail + 1) % _queue->m_size;                 
+	(_queue->m_nItems)++;
+
+	return OK;
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+ADTERR QueueRemove (Queue* _queue , Item* _item){
+	assert(_queue);
+	
+	/*check if queue is empty*/
+	if(_queue->m_nItems == 0){
+		return UNDERFLOW;
+	}
+
+	/*remove*/
+	*_item = _queue->m_data [ _queue->m_head ];  /*item to return*/
+	_queue->m_head = (_queue->m_head + 1) % _queue->m_size;       /*head--*/                     
+	(_queue->m_nItems)--;
+
+	return OK;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+int IsQueueEmpty (Queue* _queue){
+	assert(_queue);
+	
+	return (_queue->m_nItems == 0);	
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+int IsQueueFull (Queue* _queue){
+	assert(_queue);
+
+	return (_queue->m_nItems == _queue->m_size);
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void QueuePrint (Queue* _queue , PrintFunc _printFunc) {
+	int i=0 , itemsNum,size,curIndex;
+	assert(_queue);
+	assert(_printFunc);
+	
+	itemsNum = _queue->m_nItems;
+	curIndex = _queue->m_head;
+	size = _queue->m_size; 	
+
+	printf("head=>tail :");
+	while(i < itemsNum){
+		_printFunc( _queue->m_data [curIndex] );
+		printf(" , ");
+		curIndex = (curIndex + 1) % size;
+		i++;
+	}  
+	printf("\n\n");
+	
+
+}
+
+/*------------------------------------------------------------------------------------*/
+
+int QueueNitems (Queue* _queue)
+{
+	return (_queue->m_nItems );
+}
+
+
+/*------------------------------------------------------------------------------------*/
+

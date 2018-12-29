@@ -1,0 +1,137 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAX_NO_OF_WORDS 1000
+#define MAX_CHARS_IN_SENTENCE 1000
+#define MAX_CHARS_IN_WORD 50
+
+
+/*---------------------------------------------------------------------------------*/
+
+typedef struct countWordsArr{
+	int count;
+	char word[MAX_CHARS_IN_WORD];
+}countWordsArr; 
+
+int printNumOfChars(char* fileName);
+int printNumOfWords(char* fileName);
+static int indexOfWordinArr(char* word,countWordsArr* arr,int numOfElements);
+
+/*---------------------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{	
+	char* filename="test.txt";  
+	char* filename2="test2.txt";    
+
+	if(printNumOfChars(filename) == -1){
+		printf("errorrr1\n\n");
+	}
+	
+	if(printNumOfWords(filename2) == -1){
+		printf("errorrr2\n\n");
+	}
+		
+	return 0;
+}
+
+/*---------------------------------------------------------------------------------*/
+
+int printNumOfChars(char* fileName){ 
+	FILE *fp;
+	int hashTable[256]={0};
+	char sentence[MAX_CHARS_IN_SENTENCE];
+	int i= 0;
+	
+
+	if( (fp=fopen(fileName,"r"))==NULL){
+		return -1;
+	}
+	
+
+	while( fgets(sentence , MAX_CHARS_IN_SENTENCE , fp) != NULL){		
+		while(sentence[i] != '\0'){	
+			hashTable[sentence[i]]++;
+			i++;
+		}
+	}
+
+	for(i=0;i<256;i++){
+		if(hashTable[i]>0)
+			printf(" %c : %d \n", (char)i , hashTable[i]);
+	}
+
+	printf("\n\n");
+
+	fclose(fp);
+
+	return 0;
+	
+}
+
+/*---------------------------------------------------------------------------------*/
+
+int printNumOfWords(char* fileName){ 
+
+	FILE *fp;
+	int hashTable[256]={0};
+	char sentence[MAX_CHARS_IN_SENTENCE];
+	int numOfElements = 0, i=0;
+	char* word;
+	countWordsArr wordsArr[MAX_NO_OF_WORDS];
+	int indexOfWord = -1;
+
+	if( (fp=fopen(fileName,"r"))==NULL){
+		return -1;
+	}
+	
+
+	while( fgets(sentence , MAX_CHARS_IN_SENTENCE , fp) != NULL){		
+	
+		word = strtok (sentence," ");
+ 	 	while (word != NULL)
+  		{	
+			indexOfWord = indexOfWordinArr(word,wordsArr,numOfElements);   /*finds index of word if existed*/
+			if(indexOfWord==-1){                               /*new word*/
+				strcpy(wordsArr[numOfElements].word,word);
+				wordsArr[numOfElements].count = 1;
+				numOfElements++;
+			}else{                                             /*word exists - counter++*/
+				(wordsArr[indexOfWord].count)++;
+			}
+   			word = strtok (NULL, " ");
+  		}
+	}
+
+	for(i=0;i<numOfElements;i++){     
+		printf("%s : %d \n",wordsArr[i].word,wordsArr[i].count);	
+	}
+
+	printf("\n\n");
+
+	fclose(fp);
+
+	return 0;
+
+
+}
+
+/*---------------------------------------------------------------------------------*/
+
+static int indexOfWordinArr(char* word,countWordsArr* arr,int numOfElements){
+	int i=0;
+	while(i<numOfElements){
+		if(strcmp(word,arr[i].word)==0){
+			return i;
+		}
+		i++;
+	}
+	return -1;
+
+}
+
+/*---------------------------------------------------------------------------------*/
+
+
+
+

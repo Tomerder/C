@@ -1,0 +1,7 @@
+#TYPE=Dog
+
+cp tmplList.h DogList.h
+sed -i 's/XXX/Dog/g' DogList.h
+
+cp tmplList.c DogList.c
+sed -i 's/XXX/Dog/g' DogList.c

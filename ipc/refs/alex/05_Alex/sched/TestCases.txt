@@ -1,0 +1,28 @@
+Scheduler Test Cases
+
+SCHEDULER MODULE
+
++ create, add & destroy, no running
+
++ single task - no sleep
+	check that task was executed
+
+- multi-task - no sleep
+	check that tasks were executed at proper order
+
+- single task - sleep
+	check that task was executed at proper interval
+
+- multi-task, no sleep - with pause
+	check that pause occured when it should
+
+- multi-task, no sleep - with add
+	check that tasks were executed at proper order
+
+- multi task - sleep
+	check that tasks were executed at proper order & intervals
+
+
+- all: multi-task, sleep, pause, add
+	check all
+

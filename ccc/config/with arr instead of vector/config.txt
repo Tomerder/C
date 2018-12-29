@@ -1,0 +1,11 @@
+
+#test remark 
+
+conf1 7
+
+max_size 256
+
+453 35 6543
+
+config2 ttt
+logMode 2

@@ -1,0 +1,2 @@
+gcc -c count.c 
+gcc -shared  -o count.so count.o

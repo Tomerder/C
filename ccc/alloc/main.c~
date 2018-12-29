@@ -1,0 +1,122 @@
+/*************************************************************/
+/** 	Project:	My Malloc.              				**/
+/** 	Author:		Tomer Dery								**/
+/** 	Created:	27/1/2112								**/
+/** 	Updated:	27/1/2112								**/
+/*************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <time.h>
+
+/*------------------------------------------------------------------------------------*/
+
+#include "MyMalloc.h"
+
+/*------------------------------------------------------------------------------------*/
+
+typedef enum {FALSE, TRUE} IsConected;
+
+char* resultArr[2] = {"FAIL","PASS"};
+
+#define SUCCESS 1
+
+#define DEBUG 0
+
+/*------------------------------------------------------------------------------------*/
+
+void Test();
+
+/*------------------------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{	
+	printf("/*------------------------------------------------*/\n");
+	Test();
+	
+    return 0; 	
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void Test()
+{
+	void* block1 = NULL;
+	void* block2 = NULL;
+	void* block3 = NULL;
+	size_t sizeToAlloc = 50;
+
+	void* mem = malloc(sizeToAlloc + sizeof(int)*2 );
+	void* myMem =  MyMallocInit(mem , sizeToAlloc);
+	
+	printf("MyMallocInit(mem , %d);\n" ,sizeToAlloc );
+	PrintMem2(myMem);
+	
+	/*---------------------------------------------*/
+	
+	block1 = MyMalloc(myMem, 5);	
+	
+	printf("block1 = MyMalloc(myMem, 5);\n");
+	PrintMem2(myMem);
+	
+	/*---------------------------------------------*/
+	
+	block2 = MyMalloc(myMem, 2);
+	
+	printf("block2 = MyMalloc(myMem, 2);\n");	
+	PrintMem2(myMem);
+	
+	/*---------------------------------------------*/
+	
+	block3 = MyMalloc(myMem, 4);
+	
+	printf("block3 = MyMalloc(myMem, 4);\n");	
+	PrintMem2(myMem);
+	
+	/*---------------------------------------------*/
+	
+	printf("MyFree(block2);\n");	
+	MyFree(block2);
+	PrintMem2(myMem);
+	
+	/*---------------------------------------------*/
+	
+	printf("MyFree(block3);\n");	
+	MyFree(block3);
+	PrintMem2(myMem);
+	
+	/*---------------------------------------------*/
+	
+	block2 = MyMalloc(myMem, 10);
+	
+	printf("block2 = MyMalloc(myMem, 10);\n");	
+	PrintMem2(myMem);
+	
+	/*---------------------------------------------*/
+	
+	block3 = MyMalloc(myMem, 20);
+	
+	printf("block3 = MyMalloc(myMem, 20);\n");	
+	PrintMem2(myMem);
+
+	/*---------------------------------------------*/
+	
+	printf("MyFree(block1);\n");	
+	MyFree(block1);
+	PrintMem2(myMem);
+
+	/*---------------------------------------------*/
+	
+	block1 = MyMalloc(myMem, 1);
+	
+	printf("block1 = MyMalloc(myMem, 1);\n");	
+	PrintMem2(myMem);
+
+
+}
+
+
+/*------------------------------------------------------------------------------------*/
+
+
+

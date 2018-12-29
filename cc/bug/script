@@ -1,0 +1,7 @@
+rm core
+rm bug
+gcc -g bug.c -o bug
+./bug
+gdb bug core
+
+

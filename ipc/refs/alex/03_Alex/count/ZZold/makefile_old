@@ -1,0 +1,26 @@
+CC=gcc
+CFLAGS=-ansi -Werror -Wall -pedantic -g
+LFLAGS=-g
+
+OBJS=CountMain.o
+OBJL=Count.o
+LIB=libcount.a
+EXEFILE=count
+
+
+$(EXEFILE): $(OBJS) $(LIB)
+	$(CC) $(LFLAGS) $^ -o $@
+
+$(LIB): $(OBJL)
+	ar -cr $@ $(OBJL)
+
+$(OBJL): $(OBJL:.o=.c)
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+$(OBJS): $(OBJS:.o=.c)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+clean:
+	rm $(OBJL) $(OBJS) $(LIB) $(EXEFILE)
+

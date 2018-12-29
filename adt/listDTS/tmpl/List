@@ -1,0 +1,34 @@
+/*-----------------------------------------Tomer Dery-----------------------------------------*/
+#ifndef __@@@_LIST_H__
+#define __@@@_LIST_H__
+
+#include "@@@.h"
+
+/*----------------------------------------------------------------------------------*/
+
+typedef void* @@@ListItr;   
+typedef struct @@@List @@@List;
+
+@@@List* @@@ListCreate();       
+void @@@ListDestroy(@@@List* _list);
+ADTERR @@@ListPushHead(@@@List* _list , @@@* _data);
+ADTERR @@@ListPushTail(@@@List* _list , @@@* _data);
+ADTERR @@@ListPopHead(@@@List* _list , @@@** _data);
+ADTERR @@@ListPopTail(@@@List* _list , @@@** _data);
+size_t @@@ListCountItems(@@@List* _list);
+int @@@ListIsEmpty(@@@List* _list);
+void @@@ListPrint(@@@List* _list , PrintFunc _printFunc);
+@@@ListItr @@@ListBegin(@@@List* _list);
+@@@ListItr @@@ListEnd(@@@List* _list);
+@@@ListItr @@@ListNext(@@@ListItr _itr);
+@@@ListItr @@@ListPrev(@@@ListItr _itr);
+@@@ListItr @@@ListGetData(@@@ListItr _itr);
+@@@ListItr @@@ListInsert(@@@ListItr _insertBefore , @@@* _data);
+@@@* @@@ListRemove(@@@ListItr _toRemove);
+@@@ListItr @@@ListFindFirst(@@@ListItr _from, @@@ListItr _to, MatchFunc _MatchFunc, @@@* _data);
+@@@ListItr @@@ListForEach(@@@ListItr _from, @@@ListItr _to, DoFunc _DoFunc, Parm _parm);
+
+
+/*----------------------------------------------------------------------------------*/
+
+#endif /* #ifndef __@@@_LIST_H__ */

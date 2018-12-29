@@ -1,0 +1,1 @@
+fooMain.o: fooMain.c ../../AInclude/foo.h ../../AInclude/one.h

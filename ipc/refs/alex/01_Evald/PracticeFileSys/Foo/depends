@@ -1,0 +1,2 @@
+foo.o: foo.c ../AInclude/foo.h
+bar.o: bar.c ../AInclude/foo.h

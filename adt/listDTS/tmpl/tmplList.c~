@@ -1,0 +1,51 @@
+/*-----------------------------------------Tomer Dery-----------------------------------------*/
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "@@@List.h"
+
+
+@@@List* @@@ListCreate() {  return (@@@List*)ListCreate();   }       
+
+void @@@ListDestroy(@@@List* _list)    {  ListDestroy((List*)_list)       ;   }   
+
+ADTERR @@@ListPushHead(@@@List* _list , @@@* _data)  { return ListPushHead((List*)_list , (Data)_data);   }  
+
+ADTERR @@@ListPushTail(@@@List* _list , @@@* _data)   { return ListPushTail((List*)_list , (Data)_data);  } 
+
+ADTERR @@@ListPopHead(@@@List* _list , @@@** _data) { return ListPopHead((List*)_list , (Data*) _data);  }   
+
+ADTERR @@@ListPopTail(@@@List* _list , @@@** _data) { return ListPopHead((List*)_list , (Data*) _data);  }   
+
+size_t @@@ListCountItems(@@@List* _list)   { return ListCountItems((List*)_list);   }  
+
+int @@@ListIsEmpty(@@@List* _list)   { return ListIsEmpty((List*)_list); }
+
+void @@@ListPrint(@@@List* _list , PrintFunc _printFunc)   { ListPrint( (List*)_list ,  _printFunc);  } 
+
+@@@ListItr @@@ListBegin(@@@List* _list)    {  return ListBegin( (List*)_list);  }
+
+@@@ListItr @@@ListEnd(@@@List* _list)  {  return ListEnd( (List*)_list);  }  
+
+@@@ListItr @@@ListNext(@@@ListItr _itr) {return ListNext( _itr);	}
+
+@@@ListItr @@@ListPrev(@@@ListItr _itr)  {return ListPrev( _itr);	}
+
+@@@ListItr @@@ListGetData(@@@ListItr _itr)   {return ListGetData( _itr);  }
+
+@@@ListItr @@@ListInsert(@@@ListItr _insertBefore , @@@* _data) 
+	{return ListInsert(_insertBefore , ((Data)_data) ); }
+
+@@@* @@@ListRemove(@@@ListItr _toRemove)  { return (Data)ListRemove(_toRemove); }
+
+@@@ListItr @@@ListFindFirst(@@@ListItr _from,@@@ListItr _to, MatchFunc _MatchFunc, @@@* _data) 
+				{return ListFindFirst( _from,  _to,  _MatchFunc,  (Data)_data);   }
+
+@@@ListItr @@@ListForEach(@@@ListItr _from, @@@ListItr _to, DoFunc _DoFunc, Parm _parm) 
+				{ return ListForEach( _from,  _to,  _DoFunc,  _parm); }								
+
+
+
+
+
+

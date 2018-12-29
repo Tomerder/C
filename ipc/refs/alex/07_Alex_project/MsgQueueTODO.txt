@@ -1,0 +1,56 @@
+/*	*** MsgQueue over SharedMem: TO DO and DONE list ***
+
+/*-----------------------------------*/
+	update existing modules
+/*-----------------------------------*/
+
+VVV	in Queue:	QueueGetSize
+V	- write function				
+V	- test							
+
+
+VVV	in Queue:	QueueCreate
+V	- update function
+V	- test
+
+
+
+/*-----------------------------------*/
+		new modules
+/*-----------------------------------*/
+
+	MsgQueue:	all functions
+V	- pseudo code
+-	- write functions
+-	- compile
+
+
+
+VVV	Sync:	all functions
+V	- header file
+V	- pseudo code
+V	- write functions
+V	- test
+
+
+
+VVV	SharedMem:	all functions
+V	- header file
+V	- pseudo code
+V	- write functions
+V	- test
+
+
+
+
+
+
+
+
+
+
+	XXX:	YYY
+	- write function
+	- test
+	
+*/

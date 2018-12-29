@@ -1,0 +1,403 @@
+/*****************************************************************************************************************
+*    AUTHOR: Tomer Dery                                                                                 
+*    DATE: 18.02.14                                                                                              
+*    LAST MODIFIED: 18.02.14                                                                                  
+*    DESCRIPTION: msg queue implemented by shared memory 
+*****************************************************************************************************************/
+#define _BSD_SOURCE 
+#define _POSIX_C_SOURCE 2
+#define _XOPEN_SOURCE 500
+/*-----------------------------------------------------------------*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <errno.h>
+#include <assert.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <limits.h>
+#include <sys/types.h> 
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <getopt.h>
+#include <sys/msg.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+#include <pthread.h>
+
+/*-----------------------------------------------------------------*/
+#include "MsgQueue.h"
+
+#include "MyMalloc.h"
+#include "queue.h"
+#include "Sync.h"
+
+/*-----------------------------------------------------------------*/
+
+enum{FALSE, TRUE};
+
+#define SHMGET_PERMISIONS 0666
+#define SHMGET_FLAGS  IPC_CREAT | IPC_EXCL
+#define NO_FLAGS 0 
+#define FILE_ID 'A'
+
+#define ERROR -1
+
+enum{OK_E , ERR_FTOK, ERR_SEMGET,  ERR_SEMCTL , ERR_SEMOP , ERR_SHMGET , ERR_SHMAT , ERR_SHMDT , ERR_SHMCTL , MY_ALLOC_E};
+
+enum{ SEM_EMPTY , SEM_FULL , SEM_LOCK , NUM_OF_SEMS };
+
+/*-----------------------------------------------------------------*/
+
+#define CHK_NULL(PTR)  if(PTR == NULL) return NULL;
+#define CHK_NULL_ERR(PTR, ERR)  if(PTR == NULL) return ERR;
+
+#define CHK_ERR(ERR)  if(ERR != OK_E) { printf("ERROR : %d\n", ERR); }
+#define CHK_ERR_RET(ERR,TO_RET)  if(ERR != OK_E) { printf("ERROR : %d\n", ERR); return TO_RET;}
+
+#define MIN_MSGQ_SIZE (sizeof(OffsetsTable) + QueueNeededSize(10) )
+
+/*-----------------------------------------------------------------*/
+
+#define GET_OFFSET(ADR1 , ADR2)  (  (char*)(ADR1) - (char*)(ADR2)  )  
+
+#define GET_QUEUE_OFFSET(MSGQ)   (  MSGQ->m_sharedData->m_offsets.m_offsetQueue   )
+#define GET_SYNC_OFFSET(MSGQ)    (  MSGQ->m_sharedData->m_offsets.m_offsetSyncObjs  )
+#define GET_MSGS_OFFSET(MSGQ)    (  MSGQ->m_sharedData->m_offsets.m_offsetMsgs  )
+
+/*-----------------------------------------------------------------*/
+
+#define GET_QUEUE(MSGQ)   ( MSGQ->m_privateData.m_ptrQueue )
+#define GET_SYNC(MSGQ)    ( MSGQ->m_privateData.m_ptrSyncObjs )
+#define GET_MSGS(MSGQ)    ( MSGQ->m_privateData.m_ptrMsgs )
+
+#define GET_MSG(MSGQ , OFFSET)   (  (void*)( (char*)GET_MSGS(MSGQ) + OFFSET)  )
+
+/*-----------------------------------------------------------------*/
+
+#define IS_CREATOR(MSGQ)    ( MSGQ->m_privateData.m_isCreator )
+
+#define GET_SHMID(MSGQ)    ( MSGQ->m_privateData.m_sharedMemId )
+
+#define GET_SHARED_MEM(MSGQ)  ((char*)(MSGQ->m_sharedData))
+
+#define GET_SIZE_UNTIL_BUF   (sizeof(OffsetsTable))
+
+#define GET_SHARED_BUF(MSGQ)  (  (char*)( GET_SHARED_MEM(MSGQ) + GET_SIZE_UNTIL_BUF  )    )
+
+#define GET_SHARED_BUF_SIZE(SHARED_MEM_SIZE)  ( SHARED_MEM_SIZE - GET_SIZE_UNTIL_BUF  )
+
+/*-----------------------------------------------------------------*/
+#define GET_SIZE_OF_MSG(LEN)  ( LEN + sizeof(int) )
+
+#define DUMMY_SIZE 1
+
+typedef struct Msg{
+	int   m_len;
+	char  m_msg[DUMMY_SIZE];
+}Msg;
+
+/*-----------------------------------------------------------------*/
+
+typedef struct PrivateData{
+	int m_isCreator;
+	int m_sharedMemId;
+	/* absolute ptrs per process - initializes on connect */
+	SyncObjs* m_ptrSyncObjs;
+	Queue* m_ptrQueue;
+	void* m_ptrMsgs;
+}PrivateData;
+
+/*-----------------------------------------------------------------*/
+
+typedef struct OffsetsTable{
+	int m_offsetSyncObjs;
+	int m_offsetQueue;
+	int m_offsetMsgs;
+}OffsetsTable;
+
+/*-----------------------------------------------------------------*/
+typedef struct SharedData{
+	OffsetsTable m_offsets;     /*offsets from base*/
+	
+	/*	SyncObjs*    m_syncObjs;
+	  	Queue*       m_queue;
+	  	void*        m_msgs;       */
+}SharedData;
+
+/*-----------------------------------------------------------------*/
+
+struct MsgQ{
+	PrivateData m_privateData;
+	SharedData* m_sharedData;
+};
+
+/*-----------------------------------------------------------------*/
+
+static char* GetSharedMem(char* _sharedMemName, size_t _size , int _flags , MsgQ* _msgQ);
+
+static void InitPtrsFromOffsets(MsgQ* _msgQ);
+
+static int InitSyncObjs(MsgQ* _msgQ, char* _memSpaceAllocated, int _maxNumOfMsgs);
+
+static int InitQueue(MsgQ* _msgQ, char* _memSpaceAllocated, int _maxNumOfMsgs);
+
+/*-----------------------------------------------------------------*/
+
+MsgQ* MsgQueueCreate (char* _msgQueueName, size_t _maxNumOfMsgs, size_t _memSize)
+{
+	MsgQ* msgQ = NULL;
+	char* memSpaceAllocated = NULL;
+	int err;
+	
+	assert(_msgQueueName);
+	assert(_maxNumOfMsgs);
+	assert(_memSize > MIN_MSGQ_SIZE);
+ 
+ 	/*allocate msgQ => private part and pointer to shared part*/
+ 	msgQ = malloc(sizeof(MsgQ));
+ 	CHK_NULL(msgQ);
+ 
+	/*create shared memory*/	
+	msgQ->m_sharedData = (SharedData*) GetSharedMem(_msgQueueName, _memSize, SHMGET_FLAGS, msgQ);
+	CHK_NULL(msgQ->m_sharedData);
+
+    /*init memory space for syncs + queue + msgs => after offsets table*/
+	memSpaceAllocated = MyMallocInit( GET_SHARED_BUF(msgQ) , GET_SHARED_BUF_SIZE(_memSize) );	
+	CHK_NULL(memSpaceAllocated);
+
+	/*init sync objs on shared mem*/
+	err = InitSyncObjs(msgQ, memSpaceAllocated, _maxNumOfMsgs);
+	CHK_ERR(err);
+	
+	/*allocate & init queue on shared mem */
+	err = InitQueue(msgQ, memSpaceAllocated, _maxNumOfMsgs);
+	CHK_ERR(err);
+
+	/*init msgs offset on shared mem */
+	GET_MSGS_OFFSET(msgQ) = 0;
+	
+	/*sets ptrs table on process private mem space*/
+	InitPtrsFromOffsets(msgQ);
+
+	IS_CREATOR(MSGQ) = TRUE;	
+
+	return msgQ;	
+} 
+
+/*-----------------------------------------------------------------*/
+
+static int InitQueue(MsgQ* _msgQ, char* _memSpaceAllocated, int _maxNumOfMsgs)
+{
+	char* queueMem = NULL;
+	int bytesToAloc = QueueNeededSize(_maxNumOfMsgs);
+
+	/*allocate queue on shared memory*/
+	queueMem = (char*) MyMalloc(_memSpaceAllocated, bytesToAloc);
+	CHK_NULL_ERR(queueMem, MY_ALLOC_E);
+	
+	QueueInit(queueMem, _maxNumOfMsgs);
+	
+	/*set offset on shared mem*/
+	GET_QUEUE_OFFSET(_msgQ) = GET_OFFSET(queueMem, GET_SHARED_BUF(_msgQ) );
+
+	return OK_E;
+}
+
+/*-----------------------------------------------------------------*/
+
+static int InitSyncObjs(MsgQ* msgQ, char* _memSpaceAllocated, int _maxNumOfMsgs)
+{
+	char* syncMem = NULL;
+	int	bytesToAloc = SyncObjsNeededSize(NUM_OF_SEMS);
+	
+	/*allocate sync objs on shared memory*/
+	syncMem = (char*) MyMalloc(_memSpaceAllocated, bytesToAloc);
+	CHK_NULL_ERR(syncMem, MY_ALLOC_E);
+
+	SyncInit(syncMem, NUM_OF_SEMS);
+	
+	/*set offset on shared mem & ptr on private mem*/
+	GET_SYNC_OFFSET(msgQ) = GET_OFFSET(syncMem, GET_SHARED_BUF(msgQ) );
+	GET_SYNC(msgQ)  =  (SyncObjs*)(GET_SHARED_BUF(msgQ) + GET_SYNC_OFFSET(msgQ));  
+	
+	/*init all sync objs*/
+	ObjInit(GET_SYNC(msgQ) , SEM_EMPTY , SEM , 0 ); 
+	ObjInit(GET_SYNC(msgQ) , SEM_FULL , SEM , _maxNumOfMsgs ); 
+	ObjInit(GET_SYNC(msgQ) , SEM_LOCK , MUTEX , 1 ); 
+
+	return OK_E;
+}
+
+/*-----------------------------------------------------------------*/
+
+MsgQ* MsgQueueConnect( char* _msgQueueName)
+{
+	MsgQ* msgQ = NULL;
+	
+	/*allocate msgQ => private part and pointer to shared part */
+ 	msgQ = calloc(1, sizeof(MsgQ));
+ 	CHK_NULL(msgQ);
+
+	/*getting sharedMem*/
+	msgQ->m_sharedData = (SharedData*) GetSharedMem(_msgQueueName, 0, NO_FLAGS, msgQ); 
+	CHK_NULL(msgQ->m_sharedData);
+	
+	/*sets ptrs table on process private mem space*/
+	InitPtrsFromOffsets(msgQ);
+	
+	return msgQ;
+}
+
+/*-----------------------------------------------------------------*/
+
+static char* GetSharedMem(char* _sharedMemName, size_t _size , int _flags , MsgQ* _msgQ)
+{
+	int shMemId;
+	char* sharedMem = NULL;
+	key_t key;
+	
+	if ((key = ftok(_sharedMemName, FILE_ID)) == ERROR) {
+        perror("ftok");
+        return NULL;
+    }
+
+	if ((shMemId = shmget(key, _size , SHMGET_PERMISIONS | _flags )) == ERROR) {
+        perror("shmget");
+        return NULL;
+    }
+
+	sharedMem = shmat(shMemId, NULL , NO_FLAGS);
+
+	/*sets Shared mem Id on process private data space - for detaching from shMem on destroy*/ 
+	GET_SHMID(_msgQ) = shMemId;
+
+	return sharedMem;
+}
+
+/*-----------------------------------------------------------------*/
+
+static void InitPtrsFromOffsets(MsgQ* _msgQ)
+{
+	GET_QUEUE(_msgQ)  =  (Queue*)(GET_SHARED_BUF(_msgQ) + GET_QUEUE_OFFSET(_msgQ));
+	GET_SYNC(_msgQ)  =  (SyncObjs*)(GET_SHARED_BUF(_msgQ) + GET_SYNC_OFFSET(_msgQ));
+	GET_MSGS(_msgQ)  =  GET_SHARED_BUF(_msgQ) + GET_MSGS_OFFSET(_msgQ);
+}
+
+/*-----------------------------------------------------------------*/
+
+void MsgQueueDestroy (MsgQ* _msgQ)
+{
+	/*detach*/
+	if (shmdt( GET_SHARED_MEM(_msgQ) ) == ERROR) {
+        perror("shmdt");
+    }
+
+	/*remove*/
+	if (shmctl( GET_SHMID(_msgQ) , IPC_RMID, NULL) == ERROR) {
+	    perror("shmctl");
+	}
+
+	free(_msgQ);
+}
+
+/*-----------------------------------------------------------------*/
+
+int	MsgQueueSnd (MsgQ* _msgQ, void* _buffer, size_t _length)
+{
+	int numOfBytesWrt = 0 , msgOffset ,err;
+	char* msgMem = NULL;
+
+	/*down full & lock*/
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_FULL , DOWN );
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , LOCK );	
+
+	/*msg <= myMalloc*/
+	msgMem = (char*) MyMalloc( GET_SHARED_BUF(_msgQ) , GET_SIZE_OF_MSG(_length) );
+	if(msgMem == NULL){
+		SyncObjOp( GET_SYNC(_msgQ) , SEM_FULL , UP );
+		SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , UNLOCK );	
+		return MY_ALLOC_E;
+	}
+
+	/*unlock*/
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , UNLOCK );	
+
+	/*setMsg : len + msg*/
+	((Msg*)msgMem)->m_len = _length;
+	memcpy( ((Msg*)msgMem)->m_msg , _buffer, _length);
+
+	/*lock*/
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , LOCK );	
+
+	/*insert offset of msg to queue*/
+	msgOffset =  GET_OFFSET( msgMem , GET_MSGS(_msgQ));
+	err = QueueInsert( GET_QUEUE(_msgQ) , (Item)msgOffset );
+	CHK_ERR(err);
+
+	/*unlock & up empty */
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , UNLOCK );	
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_EMPTY , UP );
+
+
+	return numOfBytesWrt;
+}
+
+/*-----------------------------------------------------------------*/
+
+int	MsgQueueRcv (MsgQ* _msgQ, void* _buffer, size_t _size)
+{
+	Msg* msg = NULL;
+	int numOfBytesRead = 0 , msgOffset ,err;	
+
+	/*down empty & lock*/
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_EMPTY , DOWN );
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , LOCK );	
+
+
+	/*remove offset of next msg to read from queue*/
+	err = QueueRemove( GET_QUEUE(_msgQ) , (Item*)(&msgOffset) );
+	CHK_ERR(err);
+
+	/*unlock*/
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , UNLOCK );
+
+	/*read from msgOffset to buffer*/
+	msg = (Msg*) GET_MSG(_msgQ, msgOffset);
+	
+	numOfBytesRead = msg->m_len;
+	memcpy( _buffer, msg->m_msg , numOfBytesRead);
+	
+	/*lock*/
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , LOCK );	
+
+	/* free msg space */
+	MyFree( GET_MSG(_msgQ , msgOffset) );
+
+	/*unlock & up full */
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_LOCK , UNLOCK );	
+	SyncObjOp( GET_SYNC(_msgQ) , SEM_FULL , UP );
+
+	return numOfBytesRead;
+}
+
+/*-----------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

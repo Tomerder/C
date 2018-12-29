@@ -1,0 +1,22 @@
+CC=gcc
+CFLAGS=-ansi -pedantic -Wall -Werror -I ../AInclude/
+
+# the library makefile should include the definitions:
+#OBJS: object file names from the directory
+#LIBFILE: names of the archive file
+
+# archive
+$(LIBFILE): $(LIBFILE)($(OBJS))
+
+# include list of depedencies, create if doesn't exist
+# if dependencies changed, need to manually delete "depends"
+include depends
+depends:
+	$(CC) $(CFLAGS) -MM $(OBJS:.o=.c) > depends
+
+# delete object files, dependency list
+.PHONEY: clean
+clean:
+	rm depends $(OBJS)
+
+

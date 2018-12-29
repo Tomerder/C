@@ -1,0 +1,159 @@
+/*****************************************************************************************************************
+*    AUTHOR: Tomer Dery                                                                                 
+*    DATE: 18.02.14                                                                                              
+*    LAST MODIFIED: 18.02.14                                                                                  
+*    DESCRIPTION: Sync Objs
+*****************************************************************************************************************/
+#define _BSD_SOURCE 
+#define _POSIX_C_SOURCE 2
+#ifndef _XOPEN_SOURCE 
+#define _XOPEN_SOURCE 500
+#endif
+/*--------------------------------------------------------------------*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+#include <limits.h>
+#include <pthread.h>
+#include <semaphore.h>
+/*--------------------------------------------------------------------*/
+
+#include "Sync.h"
+
+/*--------------------------------------------------------------------*/
+
+#define DUMMY_SIZE 1
+
+enum{OK_E, ALOC_ERR , SEM_INIT_ERR , THREAD_JOIN_ERR, OWNER_ERR};
+
+enum{ FALSE , TRUE };
+
+enum{NOT_SHAREABLE, SHAREABLE};
+
+#define GET_SYNC_OBJ(SYNC,NUM)  ( &(SYNC->m_syncObjs[NUM]) )
+#define GET_SEM(SYNC_OBJ)       ( SYNC_OBJ->m_syncObj )
+#define GET_TYPE(SYNC_OBJ)       ( SYNC_OBJ->m_type )
+#define GET_OWNER(SYNC_OBJ)       ( SYNC_OBJ->m_ownerTid )
+
+#define CHK_ERR_RET(ERR,TO_RET)  if(ERR != OK_E) { printf("ERROR : %d\n", ERR); return TO_RET;}
+
+/*--------------------------------------------------------------------*/
+
+struct SyncObj{
+	sem_t 		m_syncObj;
+	int 		m_type;
+	unsigned 	m_ownerTid;
+};		
+
+struct SyncObjs{
+	int 	  m_numOfSyncObjs;
+	SyncObj   m_syncObjs[DUMMY_SIZE];
+};
+
+/*--------------------------------------------------------------------*/
+
+SyncObjs* SyncInit(char* _mem, int _numOfObjs)
+{
+	SyncObjs* syncObjs = NULL;
+
+	assert(_mem);
+	assert(_numOfObjs > 0);
+
+	syncObjs = (SyncObjs*)_mem;
+	
+	syncObjs->m_numOfSyncObjs = _numOfObjs;
+	
+	return syncObjs;
+}
+
+/*--------------------------------------------------------------------*/
+
+int ObjInit(SyncObjs* _syncObjs, int _numOfObj, int _type, int _val)
+{
+	int err;
+	SyncObj* syncObj = NULL;
+	
+	assert(_syncObjs);
+	assert(_numOfObj < _syncObjs->m_numOfSyncObjs); 
+	
+	syncObj = (SyncObj*) GET_SYNC_OBJ(_syncObjs, _numOfObj);
+
+	GET_TYPE(syncObj) = _type;	
+
+	err = sem_init( &GET_SEM(syncObj) , SHAREABLE, _val);
+    CHK_ERR_RET(err, SEM_INIT_ERR);
+   
+    return OK_E;
+}
+
+/*--------------------------------------------------------------------*/
+
+int SyncObjsNeededSize(int _numOfObjs)
+{
+	int size = sizeof(SyncObjs) + (sizeof(SyncObj) * _numOfObjs);
+	
+	return size;
+}
+
+/*--------------------------------------------------------------------*/
+
+void SyncDestroy(SyncObjs* _syncObjs)
+{
+	int i;
+	
+	assert(_syncObjs);	
+
+	for(i=0 ; i < _syncObjs->m_numOfSyncObjs; i++){
+		sem_destroy( & GET_SEM( GET_SYNC_OBJ(_syncObjs, i) )   );
+	}
+}
+
+/*--------------------------------------------------------------------*/
+
+int SyncObjOp(SyncObjs* _syncObjs, int _numOfObj , int _op)
+{
+	SyncObj* syncObj = NULL;
+	unsigned tid = (unsigned)pthread_self();
+	int err;
+	
+	assert(_syncObjs);	
+	assert(_numOfObj < _syncObjs->m_numOfSyncObjs); 
+	
+	syncObj = (SyncObj*) GET_SYNC_OBJ(_syncObjs, _numOfObj);	
+	
+	/*if mutex unlock => check same owner*/ 
+	if( ( GET_TYPE(syncObj) == MUTEX )  ){
+		if(_op == LOCK){
+			GET_OWNER(syncObj) = tid; 
+		}else if(_op == UNLOCK  &&  ( GET_OWNER(syncObj) != tid )){
+			return OWNER_ERR;
+		}  	
+    }
+	
+	/*sem up/down <=> mutex unlock/lock*/
+	if(_op == DOWN){
+		err = sem_wait( &GET_SEM(syncObj)  );
+		CHK_ERR(err); 
+	}else if(_op == UP){
+		err = sem_post( &GET_SEM(syncObj) );
+		CHK_ERR(err);  
+	}
+	
+	return OK_E;
+}
+
+/*--------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,136 @@
+/*************************************************************/
+/** 	Project:	Logger                 				    **/
+/** 	Author:		Tomer Dery								**/
+/** 	Created:	28/1/2112								**/
+/** 	Updated:	28/1/2112								**/
+/*************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*------------------------------------------------------------------------------------*/
+
+#include "config.h"
+
+/*------------------------------------------------------------------------------------*/
+
+enum {FALSE, TRUE};
+enum {FAIL, PASS};
+
+char* resultArr[2] = {"FAIL","PASS"};
+
+#define SUCCESS 1
+
+#define DEBUG 0
+
+/*------------------------------------------------------------------------------------*/
+
+void Test();
+
+/*------------------------------------------------------------------------------------*/
+
+int main(int argc,char** argv)
+{	
+	printf("/*-----------------------------------------------------------*/\n");		
+
+	Test();
+		
+	printf("/*-----------------------------------------------------------*/\n");	
+    
+    return 0; 	
+}
+
+/*------------------------------------------------------------------------------------*/
+
+void Test()
+{
+	const char* fileName = "config.txt";
+	char* toGet = NULL; 
+	int resultInd = PASS;
+	Config* config = NULL;
+
+	/*setup*/
+	config = ConfigCreate();
+	if(config == NULL){
+		printf("alloc failed\n");
+		resultInd = FAIL;
+	}
+
+	if(ConfigRead(config, fileName) != TRUE){
+		resultInd = FAIL;
+		printf("error reading %s!!!!\n", fileName);
+		return;
+	}
+
+	/*negetive tests*/
+	toGet = ConfigGet(config, "abc");
+	if(toGet != NULL){
+		printf("no.1\n");
+		resultInd = FAIL;
+	}
+	
+	toGet = ConfigGet(config, "test");
+	if(toGet != NULL){
+		printf("no.2\n");
+		resultInd = FAIL;
+	}
+	
+	toGet = ConfigGet(config, "#test");
+	if(toGet != NULL){
+		printf("no.3\n");
+		resultInd = FAIL;
+	}
+
+	/*positive tests*/
+	toGet = ConfigGet(config, "conf1");
+	if(toGet == NULL){
+		printf("no.4\n");
+		resultInd = FAIL;
+	}else{
+		if(strcmp(toGet, "7") != 0  ){
+			printf("no.5\n");
+			resultInd = FAIL;		
+		}
+	}
+
+	toGet = ConfigGet(config, "config2");
+	if(toGet == NULL){
+		printf("no.6\n");
+		resultInd = FAIL;
+	}else{
+		if(strcmp(toGet, "ttt") != 0  ){
+			printf("no.7\n");
+			resultInd = FAIL;		
+		}
+	}
+
+	toGet = ConfigGet(config, "max_size");
+	if(toGet == NULL){
+		printf("no.8\n");
+		resultInd = FAIL;
+	}else{
+		if(strcmp(toGet, "256") != 0  ){
+			printf("no.9\n");
+			resultInd = FAIL;		
+		}
+	}
+
+	toGet = ConfigGet(config, "logMode");
+	if(toGet == NULL){
+		printf("no.10\n");
+		resultInd = FAIL;
+	}else{
+		if(strcmp(toGet, "2") != 0  ){
+			printf("no.11\n");
+			resultInd = FAIL;		
+		}
+	}
+
+	printf("Test : %s\n" , resultArr[resultInd]);
+
+	/*clean up*/
+	ConfigDestroy(config);
+}
+
+/*------------------------------------------------------------------------------------*/
+

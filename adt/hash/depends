@@ -1,0 +1,3 @@
+hash.o: hash.c hash.h GenData.h list.h err.h
+list.o: list.c list.h GenData.h err.h
+main.o: main.c hash.h GenData.h

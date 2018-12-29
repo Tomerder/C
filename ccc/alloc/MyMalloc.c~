@@ -1,0 +1,238 @@
+/*************************************************************/
+/** 	Project:	My Malloc.              				**/
+/** 	Author:		Tomer Dery								**/
+/** 	Created:	27/1/2112								**/
+/** 	Updated:	27/1/2112								**/
+/*************************************************************/
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+#include <limits.h>
+
+#include "MyMalloc.h"
+/*--------------------------------------------------------------------*/
+
+enum{ FALSE , TRUE };
+
+typedef enum{ FREE , TACKEN } Status;
+
+
+typedef struct MetaData{
+	unsigned int m_size : 31;
+	unsigned int m_status : 1;
+}MetaData;
+
+/*--------------------------------------------------------------------*/
+
+#define ALIGNMENT_SIZE sizeof(MetaData)
+
+#define ALIGN_SIZE_DOWN(SIZE) (SIZE - SIZE % ALIGNMENT_SIZE)
+#define ALIGN_SIZE_UP(SIZE)  (SIZE % ALIGNMENT_SIZE == 0) ? (SIZE) : (SIZE + (ALIGNMENT_SIZE - SIZE % ALIGNMENT_SIZE))
+#define ALIGN_ADR(ADR) (void*)((unsigned)(char*)ADR + ((unsigned)(char*)ADR % ALIGNMENT_SIZE))
+
+
+#define NEXT_META(META) ( META + (META->m_size / ALIGNMENT_SIZE ) + 1 )    
+
+#define IS_LAST_META(META) (META->m_size == INT_MAX)
+
+/*--------------------------------------------------------------------*/
+
+/*if next meta is free -> merge 2 blocks  
+  return TRUE if merge was done	*/
+static int TryMerge(MetaData* _meta);
+
+/*return free block by selected algorithem - first fit
+  gets parameter - first block meta data	*/ 
+static MetaData* GetFreeBlock(MetaData* _meta, size_t _nBytes);
+
+/*split - set next meta data*/ 
+static void Split(MetaData* _meta, size_t _nBytes);
+
+/*--------------------------------------------------------------------*/
+
+void* MyMallocInit(void* _mem, size_t _nBytes)
+{
+	MetaData* firstMeta = NULL;
+	MetaData* tailMeta = NULL;
+
+	_mem = ALIGN_ADR(_mem);
+	_nBytes = ALIGN_SIZE_DOWN(_nBytes);
+	
+
+	/*init memory*/
+	memset(_mem , 0 , _nBytes);
+	
+	/*set head*/
+	memcpy(_mem, &_nBytes, ALIGNMENT_SIZE);
+	
+	/*set first meta*/
+	firstMeta = ((MetaData*)_mem + 1);
+	firstMeta->m_size = _nBytes - ALIGNMENT_SIZE*2;
+
+	/*set tail*/ 
+	/*memset((char*)_mem + _nBytes , INT_MAX , ALIGNMENT_SIZE);*/
+	tailMeta =  ((MetaData*)_mem + _nBytes / ALIGNMENT_SIZE);
+	tailMeta->m_size = INT_MAX;
+	tailMeta->m_status = TACKEN;
+	
+	return _mem;
+}
+
+/*--------------------------------------------------------------------*/
+
+void* MyMalloc(void* _mem, size_t _nBytes)
+{
+	MetaData* meta = NULL;
+	
+	assert(_mem);
+	
+	meta = (MetaData*)_mem;
+	
+	_nBytes = ALIGN_SIZE_UP(_nBytes);
+
+	/*check total size of head*/
+	if(_nBytes > meta->m_size ){
+		return NULL;
+	}
+	
+	/*advance to first meta*/
+	meta = meta + 1;
+	
+	/*search for block to return */
+	meta = GetFreeBlock(meta, _nBytes);
+	if(meta == NULL){
+		return NULL;
+	}
+
+	/*set next META - split*/
+	Split(meta, _nBytes);
+
+	/*set size and taken*/
+	meta->m_size = _nBytes ;
+	meta->m_status = TACKEN;	
+	
+	return (meta + 1);
+}
+/*--------------------------------------------------------------------*/
+
+static void Split(MetaData* _meta, size_t _nBytes)
+{
+	MetaData* nextMeta = NULL;
+	size_t splitPos;
+
+	splitPos = (_nBytes / ALIGNMENT_SIZE);
+	nextMeta = _meta + splitPos + 1;
+	nextMeta->m_size = _meta->m_size - _nBytes - ALIGNMENT_SIZE ;
+}
+
+/*--------------------------------------------------------------------*/
+
+static MetaData* GetFreeBlock(MetaData* _meta, size_t _nBytes)
+{
+	while(_meta->m_size < _nBytes || _meta->m_status == TACKEN){
+		if(	IS_LAST_META(_meta)){
+			return NULL;    /*block was not found*/
+		}
+		
+		if(_meta->m_status == FREE){
+			if(TryMerge(_meta)){
+				continue;
+			}
+		}
+		
+		_meta = NEXT_META(_meta);
+	}
+	
+	return _meta;
+}
+
+/*--------------------------------------------------------------------*/
+
+void MyFree(void* _ptr)
+{
+	MetaData* meta = NULL;
+	
+	if(_ptr == NULL){
+		return;
+	}
+	
+	meta = (MetaData*)_ptr - 1;
+	
+	meta->m_status = FREE;
+	
+	TryMerge(meta);
+}
+
+/*--------------------------------------------------------------------*/
+
+static int TryMerge(MetaData* _meta)
+{
+	MetaData* nextMeta = NEXT_META(_meta);
+	
+	if(IS_LAST_META(nextMeta)){
+		return FALSE;
+	} 
+	
+	if(nextMeta->m_status != FREE){
+		return FALSE;
+	}
+	
+	/*merge*/
+	_meta->m_size += nextMeta->m_size + ALIGNMENT_SIZE;
+	nextMeta->m_size = 0; /*not obligatory*/
+
+	return TRUE;
+}
+
+/*--------------------------------------------------------------------*/
+
+/*print all meta data*/
+void PrintMem(void* _mem)
+{
+	/*header*/
+	MetaData* meta = (MetaData*)_mem;
+	
+	/*advance to first meta*/
+	meta = meta + 1;
+	
+	while( !IS_LAST_META(meta) ){
+		printf("%d:%d\n", meta->m_size , meta->m_status );
+		meta = NEXT_META(meta);
+	}
+	printf("/*------------------------------------------------*/\n");
+
+}
+
+
+/*print all meta data*/
+void PrintMem2(void* _mem)
+{
+	size_t size;
+	int i;
+
+	/*header*/
+	MetaData* meta = (MetaData*)_mem;
+	size = meta->m_size / ALIGNMENT_SIZE;	
+
+	printf("header : %d:%d\n", meta->m_size , meta->m_status );
+	++meta;
+	
+	for(i=1; i<size; i++){
+		printf("%d:%d ** ", meta->m_size , meta->m_status );
+		++meta;
+	}
+	
+	/*tail*/
+	printf("\ntail : %d:%d\n", meta->m_size , meta->m_status );
+	++meta;
+	
+	printf("/*------------------------------------------------*/\n");
+
+}
+
+
+
+/*--------------------------------------------------------------------*/
+
+

@@ -1,0 +1,4 @@
+list.o: list.c list.h adt.h err.h
+main.o: main.c DogList.h list.h adt.h err.h Dog.h CatList.h Cat.h
+DogList.o: DogList.c DogList.h list.h adt.h err.h Dog.h
+CatList.o: CatList.c CatList.h list.h adt.h err.h Cat.h

@@ -1,0 +1,2 @@
+vec.o: vec.c vec.h
+vecMain.o: vecMain.c vec.h

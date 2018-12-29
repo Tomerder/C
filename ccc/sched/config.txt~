@@ -1,0 +1,7 @@
+#define the log mode : if not define will be LOG_NONE
+# 	LOG_NONE = 0x00,	/* silent mode					*/
+#   LOG_ERR  = 0x01,    /* error     messages			*/
+#   LOG_WAR  = 0x02,    /* warning   messages			*/
+#   LOG_DEB  = 0x04,    /* debugging messages			*/
+#   LOG_RMG  = 0x08     /* resource manager messages	*/
+LogMode 3

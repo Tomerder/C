@@ -1,0 +1,2 @@
+one.o: one.c ../AInclude/one.h
+two.o: two.c ../AInclude/one.h
