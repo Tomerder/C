@@ -1,0 +1,27 @@
+﻿Build started 15/02/2017 11:29:10.
+     1>Project "C:\Users\DP27813\Documents\Visual Studio 2010\Projects\testC\testC\testC.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\testC.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\testC.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt testC.cpp
+         testC.cpp
+     1>testC.cpp(142): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\conio.h(128) : see declaration of 'getch'
+     1>testC.cpp(188): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(304) : see declaration of 'scanf'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\testC\Debug\testC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\testC.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\testC\Debug\testC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\testC\Debug\testC.lib" /MACHINE:X86 Debug\stdafx.obj
+         Debug\testC.obj
+         Debug\testNotDeclaredFile.obj
+         testC.vcxproj -> C:\Users\DP27813\Documents\Visual Studio 2010\Projects\testC\Debug\testC.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\testC\Debug\testC.exe;#1" /manifest Debug\testC.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\testC.unsuccessfulbuild".
+         Touching "Debug\testC.lastbuildstate".
+     1>Done Building Project "C:\Users\DP27813\Documents\Visual Studio 2010\Projects\testC\testC\testC.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.18

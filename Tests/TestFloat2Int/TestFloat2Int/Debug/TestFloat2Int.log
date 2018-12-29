@@ -1,0 +1,29 @@
+﻿Build started 05/09/2016 15:39:29.
+     1>Project "C:\Users\DP27813\Documents\Visual Studio 2010\Projects\TestFloat2Int\TestFloat2Int\TestFloat2Int.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\TestFloat2Int.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\TestFloat2Int.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt TestFloat2Int.cpp
+         TestFloat2Int.cpp
+     1>c:\users\dp27813\documents\visual studio 2010\projects\testfloat2int\testfloat2int\testfloat2int.cpp(3): warning C4627: '#include <iostream>': skipped when looking for precompiled header use
+                 Add directive to 'StdAfx.h' or rebuild precompiled header
+     1>c:\users\dp27813\documents\visual studio 2010\projects\testfloat2int\testfloat2int\testfloat2int.cpp(4): warning C4627: '#include <conio.h>': skipped when looking for precompiled header use
+                 Add directive to 'StdAfx.h' or rebuild precompiled header
+     1>c:\users\dp27813\documents\visual studio 2010\projects\testfloat2int\testfloat2int\testfloat2int.cpp(19): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(304) : see declaration of 'scanf'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\TestFloat2Int\Debug\TestFloat2Int.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\TestFloat2Int.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\TestFloat2Int\Debug\TestFloat2Int.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\TestFloat2Int\Debug\TestFloat2Int.lib" /MACHINE:X86 Debug\stdafx.obj
+         Debug\TestFloat2Int.obj
+     1>stdafx.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+         TestFloat2Int.vcxproj -> C:\Users\DP27813\Documents\Visual Studio 2010\Projects\TestFloat2Int\Debug\TestFloat2Int.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\DP27813\Documents\Visual Studio 2010\Projects\TestFloat2Int\Debug\TestFloat2Int.exe;#1" /manifest Debug\TestFloat2Int.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\TestFloat2Int.unsuccessfulbuild".
+         Touching "Debug\TestFloat2Int.lastbuildstate".
+     1>Done Building Project "C:\Users\DP27813\Documents\Visual Studio 2010\Projects\TestFloat2Int\TestFloat2Int\TestFloat2Int.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.99
