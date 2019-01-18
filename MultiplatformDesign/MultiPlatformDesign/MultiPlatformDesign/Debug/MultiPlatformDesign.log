@@ -1,0 +1,8 @@
+﻿  stdafx.cpp
+  MultiPlatformDesign.cpp
+  LogicsImp.cpp
+  Engine.cpp
+j:\tools\multiplatformdesign\multiplatformdesign\multiplatformdesign\engine.cpp(69): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+  Generating Code...
+  MultiPlatformDesign.vcxproj -> J:\Tools\MultiplatformDesign\MultiPlatformDesign\Debug\MultiPlatformDesign.exe
+  MultiPlatformDesign.vcxproj -> J:\Tools\MultiplatformDesign\MultiPlatformDesign\Debug\MultiPlatformDesign.pdb (Full PDB)
